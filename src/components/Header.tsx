@@ -66,14 +66,12 @@ export function Header({ transparentOnTop = false }: { transparentOnTop?: boolea
               {n.label}
             </Link>
           ))}
-          <a
-            href="https://www.formula1.com/"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/inscripciones"
             className="ml-2 rounded-md bg-ember px-4 py-2 text-xs font-bold uppercase tracking-wider text-ember-foreground shadow-card transition hover:brightness-105"
           >
             Inscribirme
-          </a>
+          </Link>
         </nav>
 
         <button
@@ -103,15 +101,13 @@ export function Header({ transparentOnTop = false }: { transparentOnTop?: boolea
                 {n.label}
               </Link>
             ))}
-            <a
-              href="https://www.formula1.com/"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/inscripciones"
               onClick={() => setOpen(false)}
               className="mt-2 rounded-md bg-ember px-4 py-3 text-center text-sm font-bold uppercase tracking-wider text-ember-foreground"
             >
               Inscribirme
-            </a>
+            </Link>
           </nav>
         </div>
       )}
