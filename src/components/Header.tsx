@@ -1,24 +1,14 @@
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { Link } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 import logo from "@/assets/logo-alafar.png";
 
-const NAV = [
-  { to: "/", label: "Home" },
-  { to: "/bienvenidos", label: "Bienvenidos" },
-  { to: "/sede", label: "Sede" },
-  { to: "/autoridades", label: "Autoridades" },
-  { to: "/invitados", label: "Invitados" },
-  { to: "/programa", label: "Programa" },
-  { to: "/inscripciones", label: "Inscripciones" },
-  { to: "/informacion", label: "Información" },
-  { to: "/sponsors", label: "Sponsors" },
-  { to: "/alojamiento", label: "Alojamiento" },
-] as const;
-
 export function Header({ transparentOnTop = false }: { transparentOnTop?: boolean }) {
+  const { t, i18n } = useTranslation();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [progOpen, setProgOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -29,11 +19,25 @@ export function Header({ transparentOnTop = false }: { transparentOnTop?: boolea
 
   const onDark = transparentOnTop && !scrolled;
 
+  const NAV = [
+    { to: "/", label: t("nav.home") },
+    { to: "/autoridades", label: t("nav.authorities") },
+    { to: "/inscripciones", label: t("nav.registration") },
+    { to: "/informacion", label: t("nav.information") },
+    { to: "/alojamiento", label: t("nav.accommodation") },
+    { to: "/sponsors", label: t("nav.sponsors") },
+  ] as const;
+
+  const setLang = (lng: "es" | "en") => {
+    i18n.changeLanguage(lng);
+    localStorage.setItem("alafar-lang", lng);
+  };
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled || !transparentOnTop
-          ? "border-b border-border/60 bg-background/85 backdrop-blur-xl shadow-card"
+          ? "border-b border-border/60 bg-background/90 backdrop-blur-xl shadow-card"
           : "bg-transparent"
       }`}
     >
@@ -47,36 +51,94 @@ export function Header({ transparentOnTop = false }: { transparentOnTop?: boolea
         </Link>
 
         <nav className="hidden items-center gap-0.5 lg:flex">
-          {NAV.map((n) => (
+          <Link
+            to="/"
+            activeOptions={{ exact: true }}
+            className={`rounded-md px-2.5 py-2 text-[11px] font-semibold uppercase tracking-wider transition-colors ${
+              onDark ? "text-white/85 hover:text-white" : "text-foreground/80 hover:text-brand"
+            }`}
+            activeProps={{ className: "rounded-md px-2.5 py-2 text-[11px] font-semibold uppercase tracking-wider text-cyan" }}
+          >
+            {t("nav.home")}
+          </Link>
+
+          <div className="relative" onMouseLeave={() => setProgOpen(false)}>
+            <button
+              onMouseEnter={() => setProgOpen(true)}
+              onClick={() => setProgOpen((v) => !v)}
+              className={`inline-flex items-center gap-1 rounded-md px-2.5 py-2 text-[11px] font-semibold uppercase tracking-wider transition-colors ${
+                onDark ? "text-white/85 hover:text-white" : "text-foreground/80 hover:text-brand"
+              }`}
+            >
+              {t("nav.program")} <ChevronDown size={12} />
+            </button>
+            {progOpen && (
+              <div className="absolute left-0 top-full w-64 rounded-md border border-border bg-card p-2 shadow-elegant">
+                {[
+                  { to: "/programa/tecnico", label: t("nav.programTechnical") },
+                  { to: "/programa/social", label: t("nav.programSocial") },
+                  { to: "/programa/societarias", label: t("nav.programCorporate") },
+                ].map((it) => (
+                  <Link
+                    key={it.to}
+                    to={it.to}
+                    onClick={() => setProgOpen(false)}
+                    className="block rounded px-3 py-2 text-xs font-semibold uppercase tracking-wider text-foreground/80 hover:bg-secondary hover:text-brand"
+                  >
+                    {it.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {NAV.slice(1).map((n) => (
             <Link
               key={n.to}
               to={n.to}
-              activeOptions={{ exact: true }}
               className={`rounded-md px-2.5 py-2 text-[11px] font-semibold uppercase tracking-wider transition-colors ${
-                onDark
-                  ? "text-white/85 hover:bg-white/10 hover:text-white"
-                  : "text-foreground/80 hover:bg-secondary hover:text-brand"
+                onDark ? "text-white/85 hover:text-white" : "text-foreground/80 hover:text-brand"
               }`}
-              activeProps={{
-                className: onDark
-                  ? "rounded-md px-2.5 py-2 text-[11px] font-semibold uppercase tracking-wider text-ember"
-                  : "rounded-md px-2.5 py-2 text-[11px] font-semibold uppercase tracking-wider text-brand bg-secondary",
-              }}
+              activeProps={{ className: "rounded-md px-2.5 py-2 text-[11px] font-semibold uppercase tracking-wider text-cyan" }}
             >
               {n.label}
             </Link>
           ))}
+
+          <div className="ml-2 flex items-center gap-1 border-l border-border pl-3">
+            <button
+              onClick={() => setLang("es")}
+              className={`rounded px-2 py-1 text-[11px] font-bold uppercase ${
+                i18n.language?.startsWith("es")
+                  ? "bg-cyan text-cyan-foreground"
+                  : onDark ? "text-white/70 hover:text-white" : "text-foreground/60 hover:text-brand"
+              }`}
+            >
+              ES
+            </button>
+            <button
+              onClick={() => setLang("en")}
+              className={`rounded px-2 py-1 text-[11px] font-bold uppercase ${
+                i18n.language?.startsWith("en")
+                  ? "bg-cyan text-cyan-foreground"
+                  : onDark ? "text-white/70 hover:text-white" : "text-foreground/60 hover:text-brand"
+              }`}
+            >
+              EN
+            </button>
+          </div>
+
           <Link
             to="/inscripciones"
-            className="ml-2 rounded-md bg-ember px-4 py-2 text-xs font-bold uppercase tracking-wider text-ember-foreground shadow-card transition hover:brightness-105"
+            className="ml-2 rounded-md bg-cyan px-4 py-2 text-xs font-bold uppercase tracking-wider text-cyan-foreground shadow-card transition hover:brightness-110"
           >
-            Inscribirme
+            {t("nav.register")}
           </Link>
         </nav>
 
         <button
           type="button"
-          aria-label="Abrir menú"
+          aria-label="Menu"
           onClick={() => setOpen((v) => !v)}
           className={`lg:hidden rounded-md p-2 ${onDark ? "text-white" : "text-foreground"}`}
         >
@@ -93,20 +155,39 @@ export function Header({ transparentOnTop = false }: { transparentOnTop?: boolea
                 to={n.to}
                 onClick={() => setOpen(false)}
                 className="rounded-md px-3 py-3 text-sm font-semibold uppercase tracking-wider text-foreground/80 hover:bg-secondary hover:text-brand"
-                activeProps={{
-                  className: "rounded-md px-3 py-3 text-sm font-semibold uppercase tracking-wider text-brand bg-secondary",
-                }}
-                activeOptions={{ exact: true }}
               >
                 {n.label}
               </Link>
             ))}
+            <div className="mt-2 border-t border-border pt-2">
+              <p className="px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                {t("nav.program")}
+              </p>
+              {[
+                { to: "/programa/tecnico", label: t("nav.programTechnical") },
+                { to: "/programa/social", label: t("nav.programSocial") },
+                { to: "/programa/societarias", label: t("nav.programCorporate") },
+              ].map((it) => (
+                <Link
+                  key={it.to}
+                  to={it.to}
+                  onClick={() => setOpen(false)}
+                  className="block rounded-md px-3 py-2 text-sm text-foreground/80 hover:bg-secondary hover:text-brand"
+                >
+                  {it.label}
+                </Link>
+              ))}
+            </div>
+            <div className="mt-2 flex items-center gap-2 px-3">
+              <button onClick={() => setLang("es")} className="rounded bg-secondary px-3 py-1.5 text-xs font-bold uppercase">🇪🇸 ES</button>
+              <button onClick={() => setLang("en")} className="rounded bg-secondary px-3 py-1.5 text-xs font-bold uppercase">🇬🇧 EN</button>
+            </div>
             <Link
               to="/inscripciones"
               onClick={() => setOpen(false)}
-              className="mt-2 rounded-md bg-ember px-4 py-3 text-center text-sm font-bold uppercase tracking-wider text-ember-foreground"
+              className="mt-2 rounded-md bg-cyan px-4 py-3 text-center text-sm font-bold uppercase tracking-wider text-cyan-foreground"
             >
-              Inscribirme
+              {t("nav.register")}
             </Link>
           </nav>
         </div>

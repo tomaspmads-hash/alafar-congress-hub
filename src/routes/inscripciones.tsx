@@ -1,43 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Banknote, CheckCircle2, CreditCard, Wallet } from "lucide-react";
 import { Layout } from "@/components/Layout";
 import { PageHero } from "@/components/PageHero";
-
-const PRICING_HEADERS = [
-  "Categoría",
-  "Temprana\n(antes 14 Ago)",
-  "Normal\n(15 Ago — 13 Oct)",
-  "Tardía\n(14 — 20 Oct)",
-  "En el momento\n(después 20 Oct)",
-];
-
-const PRICING_ROWS: Array<[string, string, string, string, string]> = [
-  ["Socios", "USD 800", "USD 900", "USD 1.050", "USD 1.250"],
-  ["No Socios", "USD 1.000", "USD 1.150", "USD 1.450", "USD 1.450"],
-  ["Socios Honorarios", "Sin cargo", "Sin cargo", "Sin cargo", "USD 900"],
-  ["Estudiantes", "USD 100", "USD 250", "USD 350", "USD 350"],
-  ["Acompañantes (misma habitación)", "Sin cargo", "Sin cargo", "Sin cargo", "Sin cargo"],
-  ["Acompañante adicional", "USD 400", "USD 450", "USD 550", "USD 750"],
-];
-
-const BENEFITS = [
-  "Participación en todas las sesiones técnicas y plenarias",
-  "Contacto directo con sponsors y expositores",
-  "Materiales del congreso y actas",
-  "Certificado oficial de asistencia",
-  "Cocktail de bienvenida — 26 de Octubre",
-  "Almuerzos del 27 y 28 de Octubre",
-  "Cena de gala — 29 de Octubre",
-  "Programa de paseos para acompañantes",
-];
+import { Check, FileText, Car, Mail, Users, User } from "lucide-react";
 
 export const Route = createFileRoute("/inscripciones")({
   head: () => ({
     meta: [
       { title: "Inscripciones — ALAFAR 2026" },
-      { name: "description", content: "Tarifas, beneficios y métodos de pago para inscribirse al XLIV Congreso ALAFAR 2026." },
-      { property: "og:title", content: "Inscripciones · XLIV Congreso ALAFAR" },
-      { property: "og:description", content: "Asegurá tu lugar con tarifas escalonadas. Cuanto antes confirmes, mejor el valor." },
+      { name: "description", content: "Tarifa única USD 240. Inscripción individual o grupal al XLIV Congreso ALAFAR 2026." },
     ],
   }),
   component: InscripcionesPage,
@@ -48,87 +18,106 @@ function InscripcionesPage() {
     <Layout>
       <PageHero
         eyebrow="Inscripciones"
-        title={<>Asegurá tu lugar en <span className="text-ember">ALAFAR 2026</span></>}
-        description="Tarifas escalonadas: cuanto antes confirmes, mejor el valor. Todos los pagos se procesan en USD."
+        title={<>Sumate al <span className="text-cyan">Congreso ALAFAR 2026</span></>}
+        description="Una tarifa única y simple. Acceso completo al programa técnico y social."
       />
 
+      {/* Highlighted price */}
       <section className="bg-background py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-8 lg:grid-cols-3">
-            <div className="lg:col-span-1">
-              <div className="rounded-2xl bg-gradient-brand p-8 text-white shadow-elegant">
-                <p className="text-xs font-bold uppercase tracking-[0.25em] text-ember">Beneficios incluidos</p>
-                <h3 className="mt-2 font-display text-2xl font-bold">Todo lo que recibís</h3>
-                <ul className="mt-6 space-y-3">
-                  {BENEFITS.map((b) => (
-                    <li key={b} className="flex items-start gap-3 text-sm">
-                      <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-ember" />
-                      <span className="text-white/90">{b}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+        <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+          <h2 className="font-display text-2xl font-extrabold text-brand-deep sm:text-3xl">
+            Tarifa de inscripción
+          </h2>
+          <p className="mt-6 font-display text-7xl font-black leading-none text-cyan sm:text-8xl">
+            USD 240
+          </p>
+          <p className="mt-6 text-xs leading-relaxed text-muted-foreground">
+            Los argentinos que requieran Factura A deberán adicionar el IVA correspondiente.
+          </p>
+        </div>
+      </section>
 
-            <div className="lg:col-span-2">
-              <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-card">
-                <div className="border-b border-border bg-surface px-6 py-4">
-                  <h3 className="font-display text-xl font-bold text-brand-deep">Valor de las inscripciones</h3>
-                  <p className="text-xs text-muted-foreground">Valores expresados en USD por persona.</p>
-                </div>
-                <div className="overflow-x-auto">
-                  <table className="w-full min-w-[640px] text-sm">
-                    <thead>
-                      <tr className="bg-brand-deep text-white">
-                        {PRICING_HEADERS.map((h) => (
-                          <th key={h} className="whitespace-pre-line px-4 py-3 text-left text-[11px] font-bold uppercase tracking-wider">
-                            {h}
-                          </th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {PRICING_ROWS.map((row, idx) => (
-                        <tr key={row[0]} className={idx % 2 ? "bg-surface" : "bg-card"}>
-                          {row.map((cell, i) => (
-                            <td
-                              key={i}
-                              className={`px-4 py-3 ${
-                                i === 0
-                                  ? "font-semibold text-brand-deep"
-                                  : cell === "Sin cargo"
-                                  ? "font-bold text-ember"
-                                  : "tabular-nums text-foreground/80"
-                              }`}
-                            >
-                              {cell}
-                            </td>
-                          ))}
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+      {/* Two types */}
+      <section className="bg-surface py-20">
+        <div className="mx-auto grid max-w-5xl gap-6 px-4 sm:grid-cols-2 sm:px-6 lg:px-8">
+          {[
+            {
+              Icon: User,
+              title: "Inscripción Individual",
+              price: "USD 240",
+              desc: "Para profesionales que se inscriben de manera personal.",
+              cta: "Inscribirme",
+              href: "mailto:info@alafar2026.com.ar?subject=Inscripci%C3%B3n%20Individual%20ALAFAR%202026",
+              // TODO: reemplazar por link al PDF del reglamento individual cuando el cliente lo envíe
+              docLabel: "Ver reglamento individual",
+              docHref: "#",
+            },
+            {
+              Icon: Users,
+              title: "Inscripción Grupal",
+              price: "USD 240 / persona",
+              desc: "Para empresas y delegaciones. Coordinamos la inscripción de todo el grupo.",
+              cta: "Solicitar inscripción grupal",
+              href: "mailto:info@alafar2026.com.ar?subject=Inscripci%C3%B3n%20Grupal%20ALAFAR%202026",
+              // TODO: reemplazar por link al PDF del reglamento por grupo cuando el cliente lo envíe
+              docLabel: "Ver reglamento por grupo",
+              docHref: "#",
+            },
+          ].map((p) => (
+            <div key={p.title} className="rounded-2xl border border-border bg-card p-8 shadow-card">
+              <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-cyan/10 text-cyan">
+                <p.Icon size={22} />
               </div>
-
-              <div className="mt-6 grid gap-4 sm:grid-cols-3">
-                {[
-                  { icon: CreditCard, title: "Tarjeta de Crédito", text: "VISA · MASTERCARD · AMEX" },
-                  { icon: Banknote, title: "Transferencia", text: "Transferencia bancaria internacional" },
-                  { icon: Wallet, title: "PayPal", text: "Pago seguro online" },
-                ].map(({ icon: Icon, title, text }) => (
-                  <div key={title} className="rounded-xl border border-border bg-card p-5">
-                    <Icon size={22} className="text-ember" />
-                    <p className="mt-3 font-semibold text-brand-deep">{title}</p>
-                    <p className="text-xs text-muted-foreground">{text}</p>
-                  </div>
+              <h3 className="mt-5 font-display text-2xl font-bold text-brand-deep">{p.title}</h3>
+              <p className="mt-2 text-2xl font-extrabold text-cyan">{p.price}</p>
+              <p className="mt-3 text-sm text-muted-foreground">{p.desc}</p>
+              <ul className="mt-5 space-y-2 text-sm text-foreground/85">
+                {["Acceso al programa técnico completo", "Programa social incluido", "Material institucional", "Coffee breaks y almuerzos"].map((b) => (
+                  <li key={b} className="flex items-start gap-2">
+                    <Check size={16} className="mt-0.5 shrink-0 text-cyan" /> <span>{b}</span>
+                  </li>
                 ))}
+              </ul>
+              <div className="mt-7 flex flex-wrap gap-2">
+                <a href={p.href} className="inline-flex items-center gap-2 rounded-md bg-cyan px-5 py-2.5 text-sm font-bold uppercase tracking-wider text-cyan-foreground shadow-card transition hover:brightness-110">
+                  {p.cta}
+                </a>
+                <a href={p.docHref} className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-5 py-2.5 text-sm font-bold uppercase tracking-wider text-brand-deep transition hover:border-cyan hover:text-cyan">
+                  <FileText size={14} /> {p.docLabel}
+                </a>
               </div>
-
-              <p className="mt-4 rounded-lg border-l-4 border-ember bg-ember/10 px-4 py-3 text-sm text-foreground/80">
-                <strong>Importante:</strong> en caso de requerir factura A deberá adicionar el 21% del IVA.
-              </p>
             </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Payment + parking — discreet */}
+      <section className="bg-background py-16">
+        <div className="mx-auto grid max-w-5xl gap-6 px-4 sm:grid-cols-2 sm:px-6 lg:px-8">
+          <div className="rounded-xl border border-border bg-card p-6">
+            <h3 className="text-xs font-bold uppercase tracking-[0.25em] text-cyan">Métodos de pago</h3>
+            <p className="mt-3 text-sm text-foreground/85">
+              <span className="font-semibold text-brand-deep">Transferencia bancaria.</span>{" "}
+              Para coordinar el pago, escribinos a{" "}
+              <a href="mailto:info@alafar2026.com.ar" className="font-semibold text-cyan hover:underline">
+                info@alafar2026.com.ar
+              </a>.
+            </p>
+            <p className="mt-3 text-xs italic text-muted-foreground">
+              También se acepta tarjeta de crédito y PayPal a pedido del inscripto.
+            </p>
+          </div>
+
+          <div className="rounded-xl border border-border bg-card p-6">
+            <h3 className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-cyan">
+              <Car size={14} /> Parking
+            </h3>
+            <p className="mt-3 text-sm text-foreground/85">
+              <span className="font-semibold text-brand-deep">Parking disponible en el Hotel Sofitel con costo adicional.</span>
+            </p>
+            <a href="mailto:info@alafar2026.com.ar" className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-cyan hover:underline">
+              <Mail size={12} /> Consultar disponibilidad
+            </a>
           </div>
         </div>
       </section>

@@ -10,34 +10,25 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SponsorsRouteImport } from './routes/sponsors'
-import { Route as SedeRouteImport } from './routes/sede'
 import { Route as ProgramaRouteImport } from './routes/programa'
-import { Route as InvitadosRouteImport } from './routes/invitados'
 import { Route as InscripcionesRouteImport } from './routes/inscripciones'
 import { Route as InformacionRouteImport } from './routes/informacion'
-import { Route as BienvenidosRouteImport } from './routes/bienvenidos'
 import { Route as AutoridadesRouteImport } from './routes/autoridades'
 import { Route as AlojamientoRouteImport } from './routes/alojamiento'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProgramaIndexRouteImport } from './routes/programa.index'
+import { Route as ProgramaTecnicoRouteImport } from './routes/programa.tecnico'
+import { Route as ProgramaSocietariasRouteImport } from './routes/programa.societarias'
+import { Route as ProgramaSocialRouteImport } from './routes/programa.social'
 
 const SponsorsRoute = SponsorsRouteImport.update({
   id: '/sponsors',
   path: '/sponsors',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SedeRoute = SedeRouteImport.update({
-  id: '/sede',
-  path: '/sede',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ProgramaRoute = ProgramaRouteImport.update({
   id: '/programa',
   path: '/programa',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const InvitadosRoute = InvitadosRouteImport.update({
-  id: '/invitados',
-  path: '/invitados',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InscripcionesRoute = InscripcionesRouteImport.update({
@@ -48,11 +39,6 @@ const InscripcionesRoute = InscripcionesRouteImport.update({
 const InformacionRoute = InformacionRouteImport.update({
   id: '/informacion',
   path: '/informacion',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BienvenidosRoute = BienvenidosRouteImport.update({
-  id: '/bienvenidos',
-  path: '/bienvenidos',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AutoridadesRoute = AutoridadesRouteImport.update({
@@ -70,43 +56,65 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProgramaIndexRoute = ProgramaIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ProgramaRoute,
+} as any)
+const ProgramaTecnicoRoute = ProgramaTecnicoRouteImport.update({
+  id: '/tecnico',
+  path: '/tecnico',
+  getParentRoute: () => ProgramaRoute,
+} as any)
+const ProgramaSocietariasRoute = ProgramaSocietariasRouteImport.update({
+  id: '/societarias',
+  path: '/societarias',
+  getParentRoute: () => ProgramaRoute,
+} as any)
+const ProgramaSocialRoute = ProgramaSocialRouteImport.update({
+  id: '/social',
+  path: '/social',
+  getParentRoute: () => ProgramaRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/alojamiento': typeof AlojamientoRoute
   '/autoridades': typeof AutoridadesRoute
-  '/bienvenidos': typeof BienvenidosRoute
   '/informacion': typeof InformacionRoute
   '/inscripciones': typeof InscripcionesRoute
-  '/invitados': typeof InvitadosRoute
-  '/programa': typeof ProgramaRoute
-  '/sede': typeof SedeRoute
+  '/programa': typeof ProgramaRouteWithChildren
   '/sponsors': typeof SponsorsRoute
+  '/programa/social': typeof ProgramaSocialRoute
+  '/programa/societarias': typeof ProgramaSocietariasRoute
+  '/programa/tecnico': typeof ProgramaTecnicoRoute
+  '/programa/': typeof ProgramaIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/alojamiento': typeof AlojamientoRoute
   '/autoridades': typeof AutoridadesRoute
-  '/bienvenidos': typeof BienvenidosRoute
   '/informacion': typeof InformacionRoute
   '/inscripciones': typeof InscripcionesRoute
-  '/invitados': typeof InvitadosRoute
-  '/programa': typeof ProgramaRoute
-  '/sede': typeof SedeRoute
   '/sponsors': typeof SponsorsRoute
+  '/programa/social': typeof ProgramaSocialRoute
+  '/programa/societarias': typeof ProgramaSocietariasRoute
+  '/programa/tecnico': typeof ProgramaTecnicoRoute
+  '/programa': typeof ProgramaIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/alojamiento': typeof AlojamientoRoute
   '/autoridades': typeof AutoridadesRoute
-  '/bienvenidos': typeof BienvenidosRoute
   '/informacion': typeof InformacionRoute
   '/inscripciones': typeof InscripcionesRoute
-  '/invitados': typeof InvitadosRoute
-  '/programa': typeof ProgramaRoute
-  '/sede': typeof SedeRoute
+  '/programa': typeof ProgramaRouteWithChildren
   '/sponsors': typeof SponsorsRoute
+  '/programa/social': typeof ProgramaSocialRoute
+  '/programa/societarias': typeof ProgramaSocietariasRoute
+  '/programa/tecnico': typeof ProgramaTecnicoRoute
+  '/programa/': typeof ProgramaIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -114,49 +122,48 @@ export interface FileRouteTypes {
     | '/'
     | '/alojamiento'
     | '/autoridades'
-    | '/bienvenidos'
     | '/informacion'
     | '/inscripciones'
-    | '/invitados'
     | '/programa'
-    | '/sede'
     | '/sponsors'
+    | '/programa/social'
+    | '/programa/societarias'
+    | '/programa/tecnico'
+    | '/programa/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/alojamiento'
     | '/autoridades'
-    | '/bienvenidos'
     | '/informacion'
     | '/inscripciones'
-    | '/invitados'
-    | '/programa'
-    | '/sede'
     | '/sponsors'
+    | '/programa/social'
+    | '/programa/societarias'
+    | '/programa/tecnico'
+    | '/programa'
   id:
     | '__root__'
     | '/'
     | '/alojamiento'
     | '/autoridades'
-    | '/bienvenidos'
     | '/informacion'
     | '/inscripciones'
-    | '/invitados'
     | '/programa'
-    | '/sede'
     | '/sponsors'
+    | '/programa/social'
+    | '/programa/societarias'
+    | '/programa/tecnico'
+    | '/programa/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AlojamientoRoute: typeof AlojamientoRoute
   AutoridadesRoute: typeof AutoridadesRoute
-  BienvenidosRoute: typeof BienvenidosRoute
   InformacionRoute: typeof InformacionRoute
   InscripcionesRoute: typeof InscripcionesRoute
-  InvitadosRoute: typeof InvitadosRoute
-  ProgramaRoute: typeof ProgramaRoute
-  SedeRoute: typeof SedeRoute
+  ProgramaRoute: typeof ProgramaRouteWithChildren
   SponsorsRoute: typeof SponsorsRoute
 }
 
@@ -169,25 +176,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SponsorsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/sede': {
-      id: '/sede'
-      path: '/sede'
-      fullPath: '/sede'
-      preLoaderRoute: typeof SedeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/programa': {
       id: '/programa'
       path: '/programa'
       fullPath: '/programa'
       preLoaderRoute: typeof ProgramaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/invitados': {
-      id: '/invitados'
-      path: '/invitados'
-      fullPath: '/invitados'
-      preLoaderRoute: typeof InvitadosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/inscripciones': {
@@ -202,13 +195,6 @@ declare module '@tanstack/react-router' {
       path: '/informacion'
       fullPath: '/informacion'
       preLoaderRoute: typeof InformacionRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/bienvenidos': {
-      id: '/bienvenidos'
-      path: '/bienvenidos'
-      fullPath: '/bienvenidos'
-      preLoaderRoute: typeof BienvenidosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/autoridades': {
@@ -232,19 +218,62 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/programa/': {
+      id: '/programa/'
+      path: '/'
+      fullPath: '/programa/'
+      preLoaderRoute: typeof ProgramaIndexRouteImport
+      parentRoute: typeof ProgramaRoute
+    }
+    '/programa/tecnico': {
+      id: '/programa/tecnico'
+      path: '/tecnico'
+      fullPath: '/programa/tecnico'
+      preLoaderRoute: typeof ProgramaTecnicoRouteImport
+      parentRoute: typeof ProgramaRoute
+    }
+    '/programa/societarias': {
+      id: '/programa/societarias'
+      path: '/societarias'
+      fullPath: '/programa/societarias'
+      preLoaderRoute: typeof ProgramaSocietariasRouteImport
+      parentRoute: typeof ProgramaRoute
+    }
+    '/programa/social': {
+      id: '/programa/social'
+      path: '/social'
+      fullPath: '/programa/social'
+      preLoaderRoute: typeof ProgramaSocialRouteImport
+      parentRoute: typeof ProgramaRoute
+    }
   }
 }
+
+interface ProgramaRouteChildren {
+  ProgramaSocialRoute: typeof ProgramaSocialRoute
+  ProgramaSocietariasRoute: typeof ProgramaSocietariasRoute
+  ProgramaTecnicoRoute: typeof ProgramaTecnicoRoute
+  ProgramaIndexRoute: typeof ProgramaIndexRoute
+}
+
+const ProgramaRouteChildren: ProgramaRouteChildren = {
+  ProgramaSocialRoute: ProgramaSocialRoute,
+  ProgramaSocietariasRoute: ProgramaSocietariasRoute,
+  ProgramaTecnicoRoute: ProgramaTecnicoRoute,
+  ProgramaIndexRoute: ProgramaIndexRoute,
+}
+
+const ProgramaRouteWithChildren = ProgramaRoute._addFileChildren(
+  ProgramaRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AlojamientoRoute: AlojamientoRoute,
   AutoridadesRoute: AutoridadesRoute,
-  BienvenidosRoute: BienvenidosRoute,
   InformacionRoute: InformacionRoute,
   InscripcionesRoute: InscripcionesRoute,
-  InvitadosRoute: InvitadosRoute,
-  ProgramaRoute: ProgramaRoute,
-  SedeRoute: SedeRoute,
+  ProgramaRoute: ProgramaRouteWithChildren,
   SponsorsRoute: SponsorsRoute,
 }
 export const routeTree = rootRouteImport
