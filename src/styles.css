@@ -32,51 +32,49 @@
   --color-brand: var(--brand);
   --color-brand-foreground: var(--brand-foreground);
   --color-brand-deep: var(--brand-deep);
-  --color-ember: var(--ember);
-  --color-ember-foreground: var(--ember-foreground);
+  --color-cyan: var(--cyan);
+  --color-cyan-foreground: var(--cyan-foreground);
   --color-surface: var(--surface);
   --color-surface-elevated: var(--surface-elevated);
-  --font-display: "Archivo", "Inter", system-ui, sans-serif;
+  --font-display: "Montserrat", "Inter", system-ui, sans-serif;
   --font-sans: "Inter", system-ui, sans-serif;
 }
 
 :root {
   --radius: 0.5rem;
-  /* Industrial / refractory palette: deep steel blue + ember orange */
-  --background: oklch(0.99 0.005 240);
-  --foreground: oklch(0.18 0.04 250);
-  --surface: oklch(0.97 0.012 240);
+  /* ALAFAR 2026 — Blue + Black. NO orange. */
+  --background: oklch(0.99 0.003 240);
+  --foreground: oklch(0.16 0.025 250);
+  --surface: oklch(0.97 0.008 240);
   --surface-elevated: oklch(1 0 0);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.04 250);
+  --card-foreground: oklch(0.16 0.025 250);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0.04 250);
+  --popover-foreground: oklch(0.16 0.025 250);
 
-  --brand: oklch(0.52 0.14 245);          /* ALAFAR steel blue */
-  --brand-foreground: oklch(0.99 0.005 240);
-  --brand-deep: oklch(0.32 0.10 250);     /* deep navy */
-  --ember: oklch(0.78 0.13 55);           /* ember orange */
-  --ember-foreground: oklch(0.18 0.04 250);
+  --brand: oklch(0.30 0.08 255);          /* #1A2A4A deep institutional blue */
+  --brand-foreground: oklch(0.99 0.003 240);
+  --brand-deep: oklch(0.20 0.05 255);     /* near #0F1A33 */
+  --cyan: oklch(0.70 0.15 235);           /* #1DA2E8 corporate cyan */
+  --cyan-foreground: oklch(1 0 0);
 
-  --primary: oklch(0.52 0.14 245);
-  --primary-foreground: oklch(0.99 0.005 240);
-  --secondary: oklch(0.94 0.015 240);
-  --secondary-foreground: oklch(0.18 0.04 250);
-  --muted: oklch(0.95 0.01 240);
-  --muted-foreground: oklch(0.45 0.03 250);
-  --accent: oklch(0.78 0.13 55);
-  --accent-foreground: oklch(0.18 0.04 250);
+  --primary: oklch(0.30 0.08 255);
+  --primary-foreground: oklch(0.99 0.003 240);
+  --secondary: oklch(0.95 0.01 240);
+  --secondary-foreground: oklch(0.16 0.025 250);
+  --muted: oklch(0.95 0.008 240);
+  --muted-foreground: oklch(0.45 0.02 250);
+  --accent: oklch(0.70 0.15 235);
+  --accent-foreground: oklch(1 0 0);
   --destructive: oklch(0.58 0.22 27);
   --destructive-foreground: oklch(0.99 0 0);
-  --border: oklch(0.9 0.015 240);
-  --input: oklch(0.9 0.015 240);
-  --ring: oklch(0.52 0.14 245);
+  --border: oklch(0.9 0.01 240);
+  --input: oklch(0.9 0.01 240);
+  --ring: oklch(0.70 0.15 235);
 
-  --gradient-hero: linear-gradient(135deg, oklch(0.18 0.04 250 / 0.85), oklch(0.32 0.10 250 / 0.7));
   --gradient-brand: linear-gradient(135deg, var(--brand-deep), var(--brand));
-  --gradient-ember: linear-gradient(135deg, var(--ember), oklch(0.7 0.16 45));
-  --shadow-elegant: 0 20px 50px -20px oklch(0.32 0.10 250 / 0.35);
-  --shadow-card: 0 4px 20px -8px oklch(0.32 0.10 250 / 0.15);
+  --shadow-elegant: 0 20px 50px -20px oklch(0.20 0.05 255 / 0.4);
+  --shadow-card: 0 4px 20px -8px oklch(0.20 0.05 255 / 0.15);
 }
 
 @layer base {
@@ -86,22 +84,19 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
-    font-feature-settings: "ss01", "cv11";
   }
   h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; }
 }
 
 @layer utilities {
   .bg-gradient-brand { background-image: var(--gradient-brand); }
-  .bg-gradient-ember { background-image: var(--gradient-ember); }
-  .bg-gradient-hero { background-image: var(--gradient-hero); }
   .shadow-elegant { box-shadow: var(--shadow-elegant); }
   .shadow-card { box-shadow: var(--shadow-card); }
   .text-balance { text-wrap: balance; }
+  .fade-in-up { animation: fadeInUp 0.6s ease-out both; }
 }
 
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-.animate-marquee { animation: marquee 30s linear infinite; }

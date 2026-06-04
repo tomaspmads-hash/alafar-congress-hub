@@ -16,6 +16,10 @@ import { Route as InformacionRouteImport } from './routes/informacion'
 import { Route as AutoridadesRouteImport } from './routes/autoridades'
 import { Route as AlojamientoRouteImport } from './routes/alojamiento'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProgramaIndexRouteImport } from './routes/programa.index'
+import { Route as ProgramaTecnicoRouteImport } from './routes/programa.tecnico'
+import { Route as ProgramaSocietariasRouteImport } from './routes/programa.societarias'
+import { Route as ProgramaSocialRouteImport } from './routes/programa.social'
 
 const SponsorsRoute = SponsorsRouteImport.update({
   id: '/sponsors',
@@ -52,6 +56,26 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProgramaIndexRoute = ProgramaIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ProgramaRoute,
+} as any)
+const ProgramaTecnicoRoute = ProgramaTecnicoRouteImport.update({
+  id: '/tecnico',
+  path: '/tecnico',
+  getParentRoute: () => ProgramaRoute,
+} as any)
+const ProgramaSocietariasRoute = ProgramaSocietariasRouteImport.update({
+  id: '/societarias',
+  path: '/societarias',
+  getParentRoute: () => ProgramaRoute,
+} as any)
+const ProgramaSocialRoute = ProgramaSocialRouteImport.update({
+  id: '/social',
+  path: '/social',
+  getParentRoute: () => ProgramaRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -59,8 +83,12 @@ export interface FileRoutesByFullPath {
   '/autoridades': typeof AutoridadesRoute
   '/informacion': typeof InformacionRoute
   '/inscripciones': typeof InscripcionesRoute
-  '/programa': typeof ProgramaRoute
+  '/programa': typeof ProgramaRouteWithChildren
   '/sponsors': typeof SponsorsRoute
+  '/programa/social': typeof ProgramaSocialRoute
+  '/programa/societarias': typeof ProgramaSocietariasRoute
+  '/programa/tecnico': typeof ProgramaTecnicoRoute
+  '/programa/': typeof ProgramaIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -68,8 +96,11 @@ export interface FileRoutesByTo {
   '/autoridades': typeof AutoridadesRoute
   '/informacion': typeof InformacionRoute
   '/inscripciones': typeof InscripcionesRoute
-  '/programa': typeof ProgramaRoute
   '/sponsors': typeof SponsorsRoute
+  '/programa/social': typeof ProgramaSocialRoute
+  '/programa/societarias': typeof ProgramaSocietariasRoute
+  '/programa/tecnico': typeof ProgramaTecnicoRoute
+  '/programa': typeof ProgramaIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -78,8 +109,12 @@ export interface FileRoutesById {
   '/autoridades': typeof AutoridadesRoute
   '/informacion': typeof InformacionRoute
   '/inscripciones': typeof InscripcionesRoute
-  '/programa': typeof ProgramaRoute
+  '/programa': typeof ProgramaRouteWithChildren
   '/sponsors': typeof SponsorsRoute
+  '/programa/social': typeof ProgramaSocialRoute
+  '/programa/societarias': typeof ProgramaSocietariasRoute
+  '/programa/tecnico': typeof ProgramaTecnicoRoute
+  '/programa/': typeof ProgramaIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -91,6 +126,10 @@ export interface FileRouteTypes {
     | '/inscripciones'
     | '/programa'
     | '/sponsors'
+    | '/programa/social'
+    | '/programa/societarias'
+    | '/programa/tecnico'
+    | '/programa/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -98,8 +137,11 @@ export interface FileRouteTypes {
     | '/autoridades'
     | '/informacion'
     | '/inscripciones'
-    | '/programa'
     | '/sponsors'
+    | '/programa/social'
+    | '/programa/societarias'
+    | '/programa/tecnico'
+    | '/programa'
   id:
     | '__root__'
     | '/'
@@ -109,6 +151,10 @@ export interface FileRouteTypes {
     | '/inscripciones'
     | '/programa'
     | '/sponsors'
+    | '/programa/social'
+    | '/programa/societarias'
+    | '/programa/tecnico'
+    | '/programa/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -117,7 +163,7 @@ export interface RootRouteChildren {
   AutoridadesRoute: typeof AutoridadesRoute
   InformacionRoute: typeof InformacionRoute
   InscripcionesRoute: typeof InscripcionesRoute
-  ProgramaRoute: typeof ProgramaRoute
+  ProgramaRoute: typeof ProgramaRouteWithChildren
   SponsorsRoute: typeof SponsorsRoute
 }
 
@@ -172,8 +218,54 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/programa/': {
+      id: '/programa/'
+      path: '/'
+      fullPath: '/programa/'
+      preLoaderRoute: typeof ProgramaIndexRouteImport
+      parentRoute: typeof ProgramaRoute
+    }
+    '/programa/tecnico': {
+      id: '/programa/tecnico'
+      path: '/tecnico'
+      fullPath: '/programa/tecnico'
+      preLoaderRoute: typeof ProgramaTecnicoRouteImport
+      parentRoute: typeof ProgramaRoute
+    }
+    '/programa/societarias': {
+      id: '/programa/societarias'
+      path: '/societarias'
+      fullPath: '/programa/societarias'
+      preLoaderRoute: typeof ProgramaSocietariasRouteImport
+      parentRoute: typeof ProgramaRoute
+    }
+    '/programa/social': {
+      id: '/programa/social'
+      path: '/social'
+      fullPath: '/programa/social'
+      preLoaderRoute: typeof ProgramaSocialRouteImport
+      parentRoute: typeof ProgramaRoute
+    }
   }
 }
+
+interface ProgramaRouteChildren {
+  ProgramaSocialRoute: typeof ProgramaSocialRoute
+  ProgramaSocietariasRoute: typeof ProgramaSocietariasRoute
+  ProgramaTecnicoRoute: typeof ProgramaTecnicoRoute
+  ProgramaIndexRoute: typeof ProgramaIndexRoute
+}
+
+const ProgramaRouteChildren: ProgramaRouteChildren = {
+  ProgramaSocialRoute: ProgramaSocialRoute,
+  ProgramaSocietariasRoute: ProgramaSocietariasRoute,
+  ProgramaTecnicoRoute: ProgramaTecnicoRoute,
+  ProgramaIndexRoute: ProgramaIndexRoute,
+}
+
+const ProgramaRouteWithChildren = ProgramaRoute._addFileChildren(
+  ProgramaRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -181,7 +273,7 @@ const rootRouteChildren: RootRouteChildren = {
   AutoridadesRoute: AutoridadesRoute,
   InformacionRoute: InformacionRoute,
   InscripcionesRoute: InscripcionesRoute,
-  ProgramaRoute: ProgramaRoute,
+  ProgramaRoute: ProgramaRouteWithChildren,
   SponsorsRoute: SponsorsRoute,
 }
 export const routeTree = rootRouteImport
