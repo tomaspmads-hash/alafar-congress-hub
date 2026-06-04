@@ -10,12 +10,9 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SponsorsRouteImport } from './routes/sponsors'
-import { Route as SedeRouteImport } from './routes/sede'
 import { Route as ProgramaRouteImport } from './routes/programa'
-import { Route as InvitadosRouteImport } from './routes/invitados'
 import { Route as InscripcionesRouteImport } from './routes/inscripciones'
 import { Route as InformacionRouteImport } from './routes/informacion'
-import { Route as BienvenidosRouteImport } from './routes/bienvenidos'
 import { Route as AutoridadesRouteImport } from './routes/autoridades'
 import { Route as AlojamientoRouteImport } from './routes/alojamiento'
 import { Route as IndexRouteImport } from './routes/index'
@@ -25,19 +22,9 @@ const SponsorsRoute = SponsorsRouteImport.update({
   path: '/sponsors',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SedeRoute = SedeRouteImport.update({
-  id: '/sede',
-  path: '/sede',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ProgramaRoute = ProgramaRouteImport.update({
   id: '/programa',
   path: '/programa',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const InvitadosRoute = InvitadosRouteImport.update({
-  id: '/invitados',
-  path: '/invitados',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InscripcionesRoute = InscripcionesRouteImport.update({
@@ -48,11 +35,6 @@ const InscripcionesRoute = InscripcionesRouteImport.update({
 const InformacionRoute = InformacionRouteImport.update({
   id: '/informacion',
   path: '/informacion',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BienvenidosRoute = BienvenidosRouteImport.update({
-  id: '/bienvenidos',
-  path: '/bienvenidos',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AutoridadesRoute = AutoridadesRouteImport.update({
@@ -75,24 +57,18 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/alojamiento': typeof AlojamientoRoute
   '/autoridades': typeof AutoridadesRoute
-  '/bienvenidos': typeof BienvenidosRoute
   '/informacion': typeof InformacionRoute
   '/inscripciones': typeof InscripcionesRoute
-  '/invitados': typeof InvitadosRoute
   '/programa': typeof ProgramaRoute
-  '/sede': typeof SedeRoute
   '/sponsors': typeof SponsorsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/alojamiento': typeof AlojamientoRoute
   '/autoridades': typeof AutoridadesRoute
-  '/bienvenidos': typeof BienvenidosRoute
   '/informacion': typeof InformacionRoute
   '/inscripciones': typeof InscripcionesRoute
-  '/invitados': typeof InvitadosRoute
   '/programa': typeof ProgramaRoute
-  '/sede': typeof SedeRoute
   '/sponsors': typeof SponsorsRoute
 }
 export interface FileRoutesById {
@@ -100,12 +76,9 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/alojamiento': typeof AlojamientoRoute
   '/autoridades': typeof AutoridadesRoute
-  '/bienvenidos': typeof BienvenidosRoute
   '/informacion': typeof InformacionRoute
   '/inscripciones': typeof InscripcionesRoute
-  '/invitados': typeof InvitadosRoute
   '/programa': typeof ProgramaRoute
-  '/sede': typeof SedeRoute
   '/sponsors': typeof SponsorsRoute
 }
 export interface FileRouteTypes {
@@ -114,36 +87,27 @@ export interface FileRouteTypes {
     | '/'
     | '/alojamiento'
     | '/autoridades'
-    | '/bienvenidos'
     | '/informacion'
     | '/inscripciones'
-    | '/invitados'
     | '/programa'
-    | '/sede'
     | '/sponsors'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/alojamiento'
     | '/autoridades'
-    | '/bienvenidos'
     | '/informacion'
     | '/inscripciones'
-    | '/invitados'
     | '/programa'
-    | '/sede'
     | '/sponsors'
   id:
     | '__root__'
     | '/'
     | '/alojamiento'
     | '/autoridades'
-    | '/bienvenidos'
     | '/informacion'
     | '/inscripciones'
-    | '/invitados'
     | '/programa'
-    | '/sede'
     | '/sponsors'
   fileRoutesById: FileRoutesById
 }
@@ -151,12 +115,9 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AlojamientoRoute: typeof AlojamientoRoute
   AutoridadesRoute: typeof AutoridadesRoute
-  BienvenidosRoute: typeof BienvenidosRoute
   InformacionRoute: typeof InformacionRoute
   InscripcionesRoute: typeof InscripcionesRoute
-  InvitadosRoute: typeof InvitadosRoute
   ProgramaRoute: typeof ProgramaRoute
-  SedeRoute: typeof SedeRoute
   SponsorsRoute: typeof SponsorsRoute
 }
 
@@ -169,25 +130,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SponsorsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/sede': {
-      id: '/sede'
-      path: '/sede'
-      fullPath: '/sede'
-      preLoaderRoute: typeof SedeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/programa': {
       id: '/programa'
       path: '/programa'
       fullPath: '/programa'
       preLoaderRoute: typeof ProgramaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/invitados': {
-      id: '/invitados'
-      path: '/invitados'
-      fullPath: '/invitados'
-      preLoaderRoute: typeof InvitadosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/inscripciones': {
@@ -202,13 +149,6 @@ declare module '@tanstack/react-router' {
       path: '/informacion'
       fullPath: '/informacion'
       preLoaderRoute: typeof InformacionRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/bienvenidos': {
-      id: '/bienvenidos'
-      path: '/bienvenidos'
-      fullPath: '/bienvenidos'
-      preLoaderRoute: typeof BienvenidosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/autoridades': {
@@ -239,12 +179,9 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AlojamientoRoute: AlojamientoRoute,
   AutoridadesRoute: AutoridadesRoute,
-  BienvenidosRoute: BienvenidosRoute,
   InformacionRoute: InformacionRoute,
   InscripcionesRoute: InscripcionesRoute,
-  InvitadosRoute: InvitadosRoute,
   ProgramaRoute: ProgramaRoute,
-  SedeRoute: SedeRoute,
   SponsorsRoute: SponsorsRoute,
 }
 export const routeTree = rootRouteImport
