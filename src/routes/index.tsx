@@ -3,7 +3,8 @@ import { ArrowRight, CalendarDays, MapPin, Users, Sparkles, Building2, Music2 } 
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
 import heroBsAs from "@/assets/hero-buenos-aires.jpg";
-import president from "@/assets/president-portrait.jpg";
+import presidentAsset from "@/assets/celso-freitas.jpg.asset.json";
+const president = presidentAsset.url;
 
 export const Route = createFileRoute("/")({
   head: () => ({
