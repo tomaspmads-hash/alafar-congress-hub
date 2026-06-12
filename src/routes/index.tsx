@@ -26,68 +26,47 @@ function HomePage() {
 
   return (
     <Layout transparentHeader>
-      {/* HERO: president foreground + big title */}
-      <section className="relative isolate overflow-hidden bg-brand-deep pb-20 pt-32 text-white sm:pt-40">
+      {/* HERO — big title, no portrait */}
+      <section className="relative isolate overflow-hidden bg-brand-deep pb-24 pt-32 text-white sm:pt-40">
         <div className="absolute -right-32 -top-32 h-[480px] w-[480px] rounded-full bg-cyan/15 blur-[120px]" />
         <div className="absolute -bottom-40 -left-32 h-[480px] w-[480px] rounded-full bg-brand/40 blur-[120px]" />
 
-        <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1.3fr_1fr] lg:px-8">
-          <div className="fade-in-up">
-            <span className="inline-flex items-center gap-3 rounded-none border-y border-cyan/40 bg-transparent px-1 py-2 text-[11px] font-bold uppercase tracking-[0.35em] text-cyan">
-              <span className="h-px w-8 bg-cyan/60" aria-hidden />
-              XLIV Edición
-              <span className="text-white/40">/</span>
-              Buenos Aires 2026
-              <span className="h-px w-8 bg-cyan/60" aria-hidden />
-            </span>
-            <h1 className="mt-6 font-display font-black leading-[0.95] text-white text-balance text-5xl sm:text-6xl lg:text-7xl xl:text-[80px]">
-              {t("hero.title").split(" ").slice(0, -1).join(" ")}{" "}
-              <span className="text-cyan">{t("hero.title").split(" ").slice(-1)}</span>
-            </h1>
-            <p className="mt-6 font-display text-2xl font-semibold text-cyan text-balance sm:text-3xl lg:text-[32px]">
-              {t("hero.dates")}
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-white/80">
-              <span className="inline-flex items-center gap-2"><CalendarDays size={16} className="text-cyan" /> {t("hero.dates")}</span>
-              <span className="inline-flex items-center gap-2"><MapPin size={16} className="text-cyan" /> Hotel Sofitel · Recoleta</span>
-            </div>
-            <div className="mt-10 flex flex-wrap gap-3">
-              <Link to="/inscripciones" className="inline-flex items-center gap-2 rounded-md bg-cyan px-6 py-3 text-sm font-bold uppercase tracking-wider text-cyan-foreground shadow-elegant transition hover:brightness-110">
-                {t("nav.register")} <ArrowRight size={16} />
-              </Link>
-              <Link to="/programa/social" className="inline-flex items-center gap-2 rounded-md border border-white/30 bg-white/5 px-6 py-3 text-sm font-bold uppercase tracking-wider backdrop-blur transition hover:bg-white/15">
-                {t("nav.program")}
-              </Link>
-            </div>
+        <div className="relative mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8 fade-in-up">
+          <span className="inline-flex items-center gap-3 rounded-none border-y border-cyan/40 bg-transparent px-1 py-2 text-[11px] font-bold uppercase tracking-[0.35em] text-cyan">
+            <span className="h-px w-8 bg-cyan/60" aria-hidden />
+            XLIV {t("hero.eyebrow").includes("Edition") ? "Edition" : "Edición"}
+            <span className="text-white/40">/</span>
+            Buenos Aires 2026
+            <span className="h-px w-8 bg-cyan/60" aria-hidden />
+          </span>
+          <h1 className="mt-8 font-display font-black leading-[0.92] text-white text-balance text-5xl sm:text-7xl lg:text-[96px]">
+            {t("hero.title").split(" ").slice(0, -1).join(" ")}{" "}
+            <span className="text-cyan">{t("hero.title").split(" ").slice(-1)}</span>
+          </h1>
+          <p className="mx-auto mt-8 max-w-3xl font-display text-2xl font-semibold text-cyan text-balance sm:text-3xl lg:text-[34px]">
+            {t("hero.dates")}
+          </p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm text-white/80">
+            <span className="inline-flex items-center gap-2"><CalendarDays size={16} className="text-cyan" /> {t("hero.dates")}</span>
+            <span className="inline-flex items-center gap-2"><MapPin size={16} className="text-cyan" /> Hotel Sofitel · Recoleta</span>
           </div>
-
-          {/* President portrait card */}
-          <div className="relative mx-auto w-full max-w-sm fade-in-up">
-            <div className="overflow-hidden rounded-2xl border border-white/15 bg-brand shadow-elegant">
-              <img
-                src={president}
-                alt={t("hero.presidentName")}
-                className="aspect-[4/5] w-full object-cover"
-              />
-              <div className="border-t border-white/10 bg-brand-deep/80 p-5 backdrop-blur">
-                <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-cyan">
-                  {t("hero.president")}
-                </p>
-                <p className="mt-1 font-display text-xl font-bold text-white">
-                  {t("hero.presidentName")}
-                </p>
-              </div>
-            </div>
+          <div className="mt-10 flex flex-wrap justify-center gap-3">
+            <Link to="/inscripciones" className="inline-flex items-center gap-2 rounded-md bg-cyan px-7 py-3.5 text-sm font-bold uppercase tracking-wider text-cyan-foreground shadow-elegant transition hover:brightness-110">
+              {t("nav.register")} <ArrowRight size={16} />
+            </Link>
+            <Link to="/programa/social" className="inline-flex items-center gap-2 rounded-md border border-white/30 bg-white/5 px-7 py-3.5 text-sm font-bold uppercase tracking-wider backdrop-blur transition hover:bg-white/15">
+              {t("nav.program")}
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* WELCOME SPEECH — in foreground, not behind a tab */}
+      {/* WELCOME SPEECH */}
       <section className="bg-background py-20 sm:py-28">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-cyan">{t("welcome.title")}</p>
           <h2 className="mt-3 font-display text-3xl font-extrabold text-brand-deep sm:text-4xl lg:text-5xl text-balance">
-            {t("welcome.title")} / Welcome
+            {t("welcome.title")}
           </h2>
           {/* TODO: replace with the official welcome speech text from Dr. Celso Freitas */}
           <div className="mt-8 space-y-5 text-base leading-relaxed text-foreground/85 sm:text-lg">
@@ -99,10 +78,29 @@ function HomePage() {
           <p className="mt-10 border-l-4 border-cyan pl-4 text-sm font-semibold uppercase tracking-wider text-brand-deep">
             {t("welcome.signature")}
           </p>
+
+          {/* President portrait — below welcome, smaller */}
+          <div className="mt-14 flex flex-col items-center text-center">
+            <div className="w-full max-w-[260px] overflow-hidden rounded-xl border border-border bg-brand shadow-elegant">
+              <img
+                src={president}
+                alt={t("hero.presidentName")}
+                className="aspect-[4/5] w-full object-cover"
+              />
+              <div className="border-t border-white/10 bg-brand-deep/90 p-4">
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan">
+                  {t("hero.president")}
+                </p>
+                <p className="mt-1 font-display text-base font-bold text-white">
+                  {t("hero.presidentName")}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* BUENOS AIRES — clear image, light overlay */}
+      {/* BUENOS AIRES */}
       <section className="relative isolate overflow-hidden">
         {/* TODO: replace with hi-res institutional Buenos Aires photo from client */}
         <img src={heroBsAs} alt="Buenos Aires" className="absolute inset-0 -z-10 h-full w-full object-cover" />
