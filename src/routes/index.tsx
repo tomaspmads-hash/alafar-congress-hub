@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, CalendarDays, MapPin, Users, Sparkles, Building2, Music2 } from "lucide-react";
+import { ArrowRight, CalendarDays, MapPin, Users, Award, Building2, Music2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
 import heroBsAs from "@/assets/hero-buenos-aires.jpg";
