@@ -9,9 +9,9 @@ export const Route = createFileRoute("/programa/")({
 function ProgramaIndex() {
   const { t } = useTranslation();
   const items = [
-    { to: "/programa/tecnico", Icon: CalendarDays, title: t("nav.programTechnical"), desc: "Sesiones plenarias, mesas técnicas y ponentes internacionales." },
-    { to: "/programa/social", Icon: Music2, title: t("nav.programSocial"), desc: "Cocktail, almuerzo típico con tango y cena de despedida." },
-    { to: "/programa/societarias", Icon: Users, title: t("nav.programCorporate"), desc: "Comité Ejecutivo y Asamblea General de ALAFAR." },
+    { to: "/programa/tecnico", Icon: CalendarDays, title: t("nav.programTechnical"), desc: t("program.techDesc") },
+    { to: "/programa/social", Icon: Music2, title: t("nav.programSocial"), desc: t("program.socialDesc") },
+    { to: "/programa/societarias", Icon: Users, title: t("nav.programCorporate"), desc: t("program.corpDesc") },
   ];
   return (
     <section className="bg-background py-20">
