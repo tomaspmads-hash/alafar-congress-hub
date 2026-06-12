@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Clock, MapPin, Users } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export const Route = createFileRoute("/programa/social")({
   head: () => ({ meta: [{ title: "Programa Social — ALAFAR 2026" }] }),
@@ -18,13 +19,12 @@ const ACTIVITIES = [
 ];
 
 function ProgramaSocial() {
+  const { t } = useTranslation();
   return (
     <section className="bg-background py-20">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <h2 className="font-display text-3xl font-extrabold text-brand-deep sm:text-4xl">Programa Social</h2>
-        <p className="mt-3 text-base text-muted-foreground">
-          <span className="font-semibold text-brand-deep">Sin cargo para inscriptos y acompañantes</span> (según indique cada actividad).
-        </p>
+        <h2 className="font-display text-3xl font-extrabold text-brand-deep sm:text-4xl">{t("nav.programSocial")}</h2>
+        <p className="mt-3 text-base text-muted-foreground">{t("program.socialIntro")}</p>
 
         <ol className="mt-12 relative border-l-2 border-cyan/30">
           {ACTIVITIES.map((a, i) => (
@@ -48,9 +48,7 @@ function ProgramaSocial() {
           ))}
         </ol>
 
-        <p className="mt-4 text-xs italic text-muted-foreground">
-          Horarios sujetos a confirmación.
-        </p>
+        <p className="mt-4 text-xs italic text-muted-foreground">{t("program.scheduleNote")}</p>
       </div>
     </section>
   );

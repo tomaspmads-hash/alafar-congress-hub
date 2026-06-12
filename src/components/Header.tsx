@@ -41,23 +41,23 @@ export function Header({ transparentOnTop = false }: { transparentOnTop?: boolea
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center gap-2">
           <img
             src={logo}
             alt="ALAFAR 2026"
-            className={`h-10 w-auto sm:h-12 transition ${onDark ? "brightness-0 invert" : ""}`}
+            className={`h-12 w-auto sm:h-14 transition ${onDark ? "brightness-0 invert" : ""}`}
           />
         </Link>
 
-        <nav className="hidden items-center gap-0.5 lg:flex">
+        <nav className="hidden items-center gap-1 lg:flex">
           <Link
             to="/"
             activeOptions={{ exact: true }}
-            className={`rounded-md px-2.5 py-2 text-[11px] font-semibold uppercase tracking-wider transition-colors ${
-              onDark ? "text-white/85 hover:text-white" : "text-foreground/80 hover:text-brand"
+            className={`rounded-md px-3.5 py-2.5 text-[13px] font-bold uppercase tracking-wider transition-colors ${
+              onDark ? "text-white hover:text-cyan" : "text-brand-deep hover:text-cyan"
             }`}
-            activeProps={{ className: "rounded-md px-2.5 py-2 text-[11px] font-semibold uppercase tracking-wider text-cyan" }}
+            activeProps={{ className: "rounded-md px-3.5 py-2.5 text-[13px] font-bold uppercase tracking-wider text-cyan border-b-2 border-cyan" }}
           >
             {t("nav.home")}
           </Link>
@@ -66,14 +66,14 @@ export function Header({ transparentOnTop = false }: { transparentOnTop?: boolea
             <button
               onMouseEnter={() => setProgOpen(true)}
               onClick={() => setProgOpen((v) => !v)}
-              className={`inline-flex items-center gap-1 rounded-md px-2.5 py-2 text-[11px] font-semibold uppercase tracking-wider transition-colors ${
-                onDark ? "text-white/85 hover:text-white" : "text-foreground/80 hover:text-brand"
+              className={`inline-flex items-center gap-1 rounded-md px-3.5 py-2.5 text-[13px] font-bold uppercase tracking-wider transition-colors ${
+                onDark ? "text-white hover:text-cyan" : "text-brand-deep hover:text-cyan"
               }`}
             >
-              {t("nav.program")} <ChevronDown size={12} />
+              {t("nav.program")} <ChevronDown size={14} />
             </button>
             {progOpen && (
-              <div className="absolute left-0 top-full w-64 rounded-md border border-border bg-card p-2 shadow-elegant">
+              <div className="absolute left-0 top-full w-72 rounded-md border border-border bg-card p-2 shadow-elegant">
                 {[
                   { to: "/programa/tecnico", label: t("nav.programTechnical") },
                   { to: "/programa/social", label: t("nav.programSocial") },
@@ -83,7 +83,7 @@ export function Header({ transparentOnTop = false }: { transparentOnTop?: boolea
                     key={it.to}
                     to={it.to}
                     onClick={() => setProgOpen(false)}
-                    className="block rounded px-3 py-2 text-xs font-semibold uppercase tracking-wider text-foreground/80 hover:bg-secondary hover:text-brand"
+                    className="block rounded px-3 py-2.5 text-[13px] font-bold uppercase tracking-wider text-brand-deep hover:bg-cyan/10 hover:text-cyan"
                   >
                     {it.label}
                   </Link>
@@ -96,10 +96,10 @@ export function Header({ transparentOnTop = false }: { transparentOnTop?: boolea
             <Link
               key={n.to}
               to={n.to}
-              className={`rounded-md px-2.5 py-2 text-[11px] font-semibold uppercase tracking-wider transition-colors ${
-                onDark ? "text-white/85 hover:text-white" : "text-foreground/80 hover:text-brand"
+              className={`rounded-md px-3.5 py-2.5 text-[13px] font-bold uppercase tracking-wider transition-colors ${
+                onDark ? "text-white hover:text-cyan" : "text-brand-deep hover:text-cyan"
               }`}
-              activeProps={{ className: "rounded-md px-2.5 py-2 text-[11px] font-semibold uppercase tracking-wider text-cyan" }}
+              activeProps={{ className: "rounded-md px-3.5 py-2.5 text-[13px] font-bold uppercase tracking-wider text-cyan border-b-2 border-cyan" }}
             >
               {n.label}
             </Link>
@@ -111,7 +111,7 @@ export function Header({ transparentOnTop = false }: { transparentOnTop?: boolea
               className={`rounded px-2 py-1 text-[11px] font-bold uppercase ${
                 i18n.language?.startsWith("es")
                   ? "bg-cyan text-cyan-foreground"
-                  : onDark ? "text-white/70 hover:text-white" : "text-foreground/60 hover:text-brand"
+                  : onDark ? "text-white/80 hover:text-white" : "text-foreground/60 hover:text-brand"
               }`}
             >
               ES
@@ -121,7 +121,7 @@ export function Header({ transparentOnTop = false }: { transparentOnTop?: boolea
               className={`rounded px-2 py-1 text-[11px] font-bold uppercase ${
                 i18n.language?.startsWith("en")
                   ? "bg-cyan text-cyan-foreground"
-                  : onDark ? "text-white/70 hover:text-white" : "text-foreground/60 hover:text-brand"
+                  : onDark ? "text-white/80 hover:text-white" : "text-foreground/60 hover:text-brand"
               }`}
             >
               EN
@@ -130,7 +130,7 @@ export function Header({ transparentOnTop = false }: { transparentOnTop?: boolea
 
           <Link
             to="/inscripciones"
-            className="ml-2 rounded-md bg-cyan px-4 py-2 text-xs font-bold uppercase tracking-wider text-cyan-foreground shadow-card transition hover:brightness-110"
+            className="ml-2 rounded-md bg-cyan px-5 py-2.5 text-[13px] font-bold uppercase tracking-wider text-cyan-foreground shadow-card transition hover:brightness-110"
           >
             {t("nav.register")}
           </Link>

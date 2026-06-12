@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
 import { PageHero } from "@/components/PageHero";
 import { UserRound } from "lucide-react";
@@ -13,26 +14,28 @@ export const Route = createFileRoute("/autoridades")({
   component: AutoridadesPage,
 });
 
-// TODO: agregar fotos de las autoridades cuando el cliente las provea (campo `photo` opcional)
-const GROUPS: { title: string; people: { name: string; photo?: string }[] }[] = [
-  { title: "Presidente", people: [{ name: "Celso Freitas" }] },
-  { title: "Past President", people: [{ name: "Daniel Llaguno" }] },
-  { title: "Vicepresidente 3°", people: [{ name: "Norberto Bellandi" }] },
-  { title: "Secretario", people: [{ name: "Teresa Togni" }] },
-  { title: "Tesorero", people: [{ name: "Jessica Fernández" }] },
-  { title: "Director Técnico", people: [{ name: "Alfredo Vanola" }] },
-  { title: "Vocales", people: [{ name: "Santiago Da Silveira" }, { name: "Jorge Luis Morales" }, { name: "Claudia Arango" }] },
-  { title: "Representante ante UNITECR", people: [{ name: "Abel Carriquiry" }] },
-  { title: "Representante ante W.R.A.", people: [{ name: "Celso Freitas" }] },
-];
-
 function AutoridadesPage() {
+  const { t } = useTranslation();
+
+  // TODO: agregar fotos de las autoridades cuando el cliente las provea
+  const GROUPS: { title: string; people: { name: string; photo?: string }[] }[] = [
+    { title: t("authorities.roles.president"), people: [{ name: "Celso Freitas" }] },
+    { title: t("authorities.roles.past"), people: [{ name: "Daniel Llaguno" }] },
+    { title: t("authorities.roles.vice3"), people: [{ name: "Norberto Bellandi" }] },
+    { title: t("authorities.roles.secretary"), people: [{ name: "Teresa Togni" }] },
+    { title: t("authorities.roles.treasurer"), people: [{ name: "Jessica Fernández" }] },
+    { title: t("authorities.roles.technical"), people: [{ name: "Alfredo Vanola" }] },
+    { title: t("authorities.roles.board"), people: [{ name: "Santiago Da Silveira" }, { name: "Jorge Luis Morales" }, { name: "Claudia Arango" }] },
+    { title: t("authorities.roles.unitecr"), people: [{ name: "Abel Carriquiry" }] },
+    { title: t("authorities.roles.wra"), people: [{ name: "Celso Freitas" }] },
+  ];
+
   return (
     <Layout>
       <PageHero
-        eyebrow="Autoridades"
-        title={<>Autoridades de <span className="text-cyan">ALAFAR</span></>}
-        description="Comisión Directiva y representantes institucionales de la Asociación Latinoamericana de Fabricantes de Refractarios."
+        eyebrow={t("authorities.eyebrow")}
+        title={<>{t("authorities.title").split(" ").slice(0, -1).join(" ")} <span className="text-cyan">{t("authorities.title").split(" ").slice(-1)}</span></>}
+        description={t("authorities.description")}
       />
       <section className="bg-background py-20">
         <div className="mx-auto max-w-6xl space-y-10 px-4 sm:px-6 lg:px-8">

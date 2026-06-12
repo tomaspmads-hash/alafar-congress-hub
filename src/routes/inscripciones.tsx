@@ -1,122 +1,174 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
 import { PageHero } from "@/components/PageHero";
-import { Check, FileText, Car, Mail, Users, User } from "lucide-react";
+import { Car, Mail, ArrowRight } from "lucide-react";
+
+const REGISTRATION_URL = "https://registro7202.congresovirtual.com.ar";
 
 export const Route = createFileRoute("/inscripciones")({
   head: () => ({
     meta: [
       { title: "Inscripciones — ALAFAR 2026" },
-      { name: "description", content: "Tarifa única USD 240. Inscripción individual o grupal al XLIV Congreso ALAFAR 2026." },
+      { name: "description", content: "Tarifas oficiales del XLIV Congreso ALAFAR 2026." },
     ],
   }),
   component: InscripcionesPage,
 });
 
 function InscripcionesPage() {
+  const { t } = useTranslation();
+
+  const rows: { label: string; note?: string; values: (string | null)[] }[] = [
+    { label: t("registration.rows.members"), values: ["800", "900", "1050", "1250"] },
+    { label: t("registration.rows.nonMembers"), values: ["900", "1000", "1150", "1450"] },
+    { label: t("registration.rows.honorary"), values: ["—", "—", "—", "900"] },
+    {
+      label: t("registration.rows.students"),
+      note: t("registration.rows.studentsNote"),
+      values: ["100", "250", "350", "—"],
+    },
+    {
+      label: t("registration.rows.companions"),
+      note: t("registration.rows.companionsNote"),
+      values: ["—", "—", "—", "—"],
+    },
+    { label: t("registration.rows.additional"), values: ["400", "450", "550", "750"] },
+  ];
+
+  const cols = [
+    { title: t("registration.cols.early"), sub: t("registration.cols.earlySub") },
+    { title: t("registration.cols.normal"), sub: t("registration.cols.normalSub") },
+    { title: t("registration.cols.late"), sub: t("registration.cols.lateSub") },
+    { title: t("registration.cols.onsite"), sub: t("registration.cols.onsiteSub") },
+  ];
+
+  const formatValue = (v: string | null, rowLabel: string) => {
+    if (v === "—") return rowLabel === t("registration.rows.companions") ? t("registration.rows.free") : "—";
+    return `USD ${v}`;
+  };
+
   return (
     <Layout>
       <PageHero
-        eyebrow="Inscripciones"
-        title={<>Sumate al <span className="text-cyan">Congreso ALAFAR 2026</span></>}
-        description="Una tarifa única y simple. Acceso completo al programa técnico y social."
+        eyebrow={t("registration.eyebrow")}
+        title={<>{t("registration.titlePre")} <span className="text-cyan">{t("registration.titleAccent")}</span></>}
+        description={t("registration.description")}
       />
 
-      {/* Highlighted price */}
+      {/* Fees table */}
       <section className="bg-background py-20">
-        <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-          <h2 className="font-display text-2xl font-extrabold text-brand-deep sm:text-3xl">
-            Tarifa de inscripción
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <h2 className="font-display text-3xl font-extrabold text-brand-deep sm:text-4xl">
+            {t("registration.tableTitle")}
           </h2>
-          <p className="mt-6 font-display text-7xl font-black leading-none text-cyan sm:text-8xl">
-            USD 240
-          </p>
-          <p className="mt-6 text-xs leading-relaxed text-muted-foreground">
-            Los argentinos que requieran Factura A deberán adicionar el IVA correspondiente.
-          </p>
-        </div>
-      </section>
 
-      {/* Two types */}
-      <section className="bg-surface py-20">
-        <div className="mx-auto grid max-w-5xl gap-6 px-4 sm:grid-cols-2 sm:px-6 lg:px-8">
-          {[
-            {
-              Icon: User,
-              title: "Inscripción Individual",
-              price: "USD 240",
-              desc: "Para profesionales que se inscriben de manera personal.",
-              cta: "Inscribirme",
-              href: "mailto:info@alafar2026.com.ar?subject=Inscripci%C3%B3n%20Individual%20ALAFAR%202026",
-              // TODO: reemplazar por link al PDF del reglamento individual cuando el cliente lo envíe
-              docLabel: "Ver reglamento individual",
-              docHref: "#",
-            },
-            {
-              Icon: Users,
-              title: "Inscripción Grupal",
-              price: "USD 240 / persona",
-              desc: "Para empresas y delegaciones. Coordinamos la inscripción de todo el grupo.",
-              cta: "Solicitar inscripción grupal",
-              href: "mailto:info@alafar2026.com.ar?subject=Inscripci%C3%B3n%20Grupal%20ALAFAR%202026",
-              // TODO: reemplazar por link al PDF del reglamento por grupo cuando el cliente lo envíe
-              docLabel: "Ver reglamento por grupo",
-              docHref: "#",
-            },
-          ].map((p) => (
-            <div key={p.title} className="rounded-2xl border border-border bg-card p-8 shadow-card">
-              <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-cyan/10 text-cyan">
-                <p.Icon size={22} />
-              </div>
-              <h3 className="mt-5 font-display text-2xl font-bold text-brand-deep">{p.title}</h3>
-              <p className="mt-2 text-2xl font-extrabold text-cyan">{p.price}</p>
-              <p className="mt-3 text-sm text-muted-foreground">{p.desc}</p>
-              <ul className="mt-5 space-y-2 text-sm text-foreground/85">
-                {["Acceso al programa técnico completo", "Programa social incluido", "Material institucional", "Coffee breaks y almuerzos"].map((b) => (
-                  <li key={b} className="flex items-start gap-2">
-                    <Check size={16} className="mt-0.5 shrink-0 text-cyan" /> <span>{b}</span>
-                  </li>
+          {/* Desktop table */}
+          <div className="mt-10 hidden overflow-hidden rounded-2xl border border-border bg-card shadow-card lg:block">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-brand-deep text-white">
+                  <th className="w-[26%] p-5 text-left align-top font-display text-xs font-bold uppercase tracking-wider">
+                    {t("registration.cols.category")}
+                  </th>
+                  {cols.map((c) => (
+                    <th key={c.title} className="p-5 text-center align-top">
+                      <p className="font-display text-xs font-bold uppercase tracking-wider text-cyan">{c.title}</p>
+                      <p className="mt-1 text-[11px] font-normal text-white/75">{c.sub}</p>
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {rows.map((r, idx) => (
+                  <tr key={r.label} className={idx % 2 === 0 ? "bg-card" : "bg-surface"}>
+                    <td className="border-t border-border p-5 align-top">
+                      <p className="font-display text-sm font-bold uppercase tracking-wider text-brand-deep">{r.label}</p>
+                      {r.note && <p className="mt-1 text-xs font-normal text-muted-foreground">{r.note}</p>}
+                    </td>
+                    {r.values.map((v, i) => (
+                      <td key={i} className="border-t border-border p-5 text-center align-middle">
+                        {v === "—" && r.label === t("registration.rows.companions") ? (
+                          <span className="inline-block rounded-full bg-cyan/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-cyan">
+                            {t("registration.rows.free")}
+                          </span>
+                        ) : v === "—" ? (
+                          <span className="text-muted-foreground">—</span>
+                        ) : (
+                          <span className="font-display text-lg font-extrabold text-brand-deep">USD {v}</span>
+                        )}
+                      </td>
+                    ))}
+                  </tr>
                 ))}
-              </ul>
-              <div className="mt-7 flex flex-wrap gap-2">
-                <a href={p.href} className="inline-flex items-center gap-2 rounded-md bg-cyan px-5 py-2.5 text-sm font-bold uppercase tracking-wider text-cyan-foreground shadow-card transition hover:brightness-110">
-                  {p.cta}
-                </a>
-                <a href={p.docHref} className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-5 py-2.5 text-sm font-bold uppercase tracking-wider text-brand-deep transition hover:border-cyan hover:text-cyan">
-                  <FileText size={14} /> {p.docLabel}
-                </a>
+              </tbody>
+            </table>
+          </div>
+
+          {/* Mobile cards */}
+          <div className="mt-10 space-y-4 lg:hidden">
+            {rows.map((r) => (
+              <div key={r.label} className="rounded-xl border border-border bg-card p-5 shadow-card">
+                <p className="font-display text-sm font-bold uppercase tracking-wider text-brand-deep">{r.label}</p>
+                {r.note && <p className="mt-1 text-xs text-muted-foreground">{r.note}</p>}
+                <div className="mt-4 grid grid-cols-2 gap-3 text-xs">
+                  {cols.map((c, i) => (
+                    <div key={c.title} className="rounded-lg border border-border bg-surface p-3">
+                      <p className="font-bold uppercase tracking-wider text-cyan text-[10px]">{c.title}</p>
+                      <p className="mt-1 font-display text-base font-extrabold text-brand-deep">
+                        {formatValue(r.values[i], r.label)}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+
+          <p className="mt-6 text-xs italic text-muted-foreground">{t("registration.tableNote")}</p>
         </div>
       </section>
 
-      {/* Payment + parking — discreet */}
+      {/* Register CTA */}
+      <section className="bg-surface py-16">
+        <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+          <h3 className="font-display text-2xl font-extrabold text-brand-deep sm:text-3xl">
+            {t("registration.ctaTitle")}
+          </h3>
+          <p className="mt-3 text-base text-muted-foreground">{t("registration.ctaDesc")}</p>
+          <a
+            href={REGISTRATION_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-7 inline-flex items-center gap-2 rounded-md bg-cyan px-8 py-4 text-base font-bold uppercase tracking-wider text-cyan-foreground shadow-elegant transition hover:brightness-110"
+          >
+            {t("registration.cta")} <ArrowRight size={18} />
+          </a>
+        </div>
+      </section>
+
+      {/* Payment + parking */}
       <section className="bg-background py-16">
         <div className="mx-auto grid max-w-5xl gap-6 px-4 sm:grid-cols-2 sm:px-6 lg:px-8">
           <div className="rounded-xl border border-border bg-card p-6">
-            <h3 className="text-xs font-bold uppercase tracking-[0.25em] text-cyan">Métodos de pago</h3>
+            <h3 className="text-xs font-bold uppercase tracking-[0.25em] text-cyan">{t("registration.paymentTitle")}</h3>
             <p className="mt-3 text-sm text-foreground/85">
-              <span className="font-semibold text-brand-deep">Transferencia bancaria.</span>{" "}
-              Para coordinar el pago, escribinos a{" "}
+              {t("registration.paymentText")}{" "}
               <a href="mailto:info@alafar2026.com.ar" className="font-semibold text-cyan hover:underline">
                 info@alafar2026.com.ar
               </a>.
-            </p>
-            <p className="mt-3 text-xs italic text-muted-foreground">
-              También se acepta tarjeta de crédito y PayPal a pedido del inscripto.
             </p>
           </div>
 
           <div className="rounded-xl border border-border bg-card p-6">
             <h3 className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-cyan">
-              <Car size={14} /> Parking
+              <Car size={14} /> {t("registration.parkingTitle")}
             </h3>
             <p className="mt-3 text-sm text-foreground/85">
-              <span className="font-semibold text-brand-deep">Parking disponible en el Hotel Sofitel con costo adicional.</span>
+              <span className="font-semibold text-brand-deep">{t("registration.parkingText")}</span>
             </p>
             <a href="mailto:info@alafar2026.com.ar" className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-cyan hover:underline">
-              <Mail size={12} /> Consultar disponibilidad
+              <Mail size={12} /> {t("registration.parkingCta")}
             </a>
           </div>
         </div>

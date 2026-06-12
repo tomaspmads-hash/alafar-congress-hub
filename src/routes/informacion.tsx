@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
 import { PageHero } from "@/components/PageHero";
 import { ExternalLink, MapPin } from "lucide-react";
@@ -21,30 +22,21 @@ const POIS = [
 ];
 
 function InformacionPage() {
+  const { t } = useTranslation();
   return (
     <Layout>
       <PageHero
-        eyebrow="Información General"
-        title={<>Información para <span className="text-cyan">visitantes</span></>}
-        description="Todo lo que necesitás saber para tu visita a Buenos Aires."
+        eyebrow={t("information.eyebrow")}
+        title={<>{t("information.titlePre")} <span className="text-cyan">{t("information.titleAccent")}</span></>}
+        description={t("information.description")}
       />
 
       <section className="bg-background py-20">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <div className="space-y-5 text-base leading-relaxed text-foreground/85 sm:text-lg">
-            <p>
-              La amabilidad y la hospitalidad de nuestro país son bien conocidas. Argentina es reconocida
-              por su diversidad cultural, étnica y religiosa, donde se respetan las diferencias. Moldeado
-              por la inmigración, nuestro país ha desarrollado una sociedad multicultural y diversa.
-            </p>
-            <p>
-              Todos los visitantes deben estar en posesión de un pasaporte válido con una vigencia
-              mínima de seis meses a partir de la fecha de entrada en el país.
-            </p>
-            <p>
-              Por favor, compruebe si es titular de un pasaporte de uno de los países que necesitan
-              visado para asistir a congresos en Argentina.
-            </p>
+            <p>{t("information.p1")}</p>
+            <p>{t("information.p2")}</p>
+            <p>{t("information.p3")}</p>
           </div>
 
           <div className="mt-10 grid gap-4 sm:grid-cols-2">
@@ -54,9 +46,9 @@ function InformacionPage() {
               rel="noopener noreferrer"
               className="group rounded-xl border-2 border-cyan bg-card p-5 transition hover:bg-cyan hover:text-cyan-foreground"
             >
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-cyan group-hover:text-cyan-foreground">Representación consular</p>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-cyan group-hover:text-cyan-foreground">{t("information.consularLabel")}</p>
               <p className="mt-2 inline-flex items-center gap-2 font-display text-base font-bold text-brand-deep group-hover:text-cyan-foreground">
-                Consulte aquí la representación consular de su país <ExternalLink size={14} />
+                {t("information.consularCta")} <ExternalLink size={14} />
               </p>
             </a>
             <a
@@ -65,9 +57,9 @@ function InformacionPage() {
               rel="noopener noreferrer"
               className="group rounded-xl border-2 border-cyan bg-card p-5 transition hover:bg-cyan hover:text-cyan-foreground"
             >
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-cyan group-hover:text-cyan-foreground">Visados</p>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-cyan group-hover:text-cyan-foreground">{t("information.visaLabel")}</p>
               <p className="mt-2 inline-flex items-center gap-2 font-display text-base font-bold text-brand-deep group-hover:text-cyan-foreground">
-                Más info sobre visados <ExternalLink size={14} />
+                {t("information.visaCta")} <ExternalLink size={14} />
               </p>
             </a>
           </div>
@@ -77,7 +69,7 @@ function InformacionPage() {
       <section className="bg-surface py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <h2 className="font-display text-3xl font-extrabold text-brand-deep sm:text-4xl">
-            Puntos de interés cercanos al Hotel Sofitel
+            {t("information.poisTitle")}
           </h2>
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {POIS.map((p) => (
@@ -93,7 +85,7 @@ function InformacionPage() {
                   <h3 className="font-display text-base font-bold text-brand-deep group-hover:text-cyan">{p.name}</h3>
                   <p className="mt-2 text-xs text-muted-foreground">{p.desc}</p>
                   <p className="mt-3 inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-cyan">
-                    <MapPin size={12} /> Ver en Google Maps
+                    <MapPin size={12} /> {t("information.viewMap")}
                   </p>
                 </div>
               </a>
