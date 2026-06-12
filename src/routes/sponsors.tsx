@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
 import { PageHero } from "@/components/PageHero";
-import { Construction, Mail } from "lucide-react";
+import { Construction } from "lucide-react";
 
 export const Route = createFileRoute("/sponsors")({
   head: () => ({
