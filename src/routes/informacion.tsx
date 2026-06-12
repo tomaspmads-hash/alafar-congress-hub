@@ -39,7 +39,7 @@ const POIS = [
   {
     name: "Museo Nacional de Bellas Artes",
     desc: "Principal museo de arte de Argentina, con obras de Goya, Renoir, Monet y Van Gogh.",
-    img: "https://images.unsplash.com/photo-1554907984-15263bfd63bd?auto=format&fit=crop&w=800&q=70",
+    img: "https://amigosdelbellasartes.org.ar/wp-content/uploads/2025/08/coleccion-guerrico.jpg",
     map: "https://maps.google.com/?q=Museo+Nacional+de+Bellas+Artes+Buenos+Aires",
   },
 ];
