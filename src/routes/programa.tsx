@@ -20,10 +20,10 @@ function ProgramaLayout() {
       <PageHero
         eyebrow={t("nav.program")}
         title={<>{t("nav.program")} <span className="text-cyan">ALAFAR 2026</span></>}
-        description="Buenos Aires · Hotel Sofitel · 26 al 29 de Octubre de 2026"
+        description={t("program.description")}
       />
-      <div className="border-b border-border bg-surface">
-        <div className="mx-auto flex max-w-7xl flex-wrap gap-2 px-4 py-4 sm:px-6 lg:px-8">
+      <div className="border-y-2 border-cyan/30 bg-gradient-to-b from-brand-deep to-brand text-white shadow-elegant">
+        <div className="mx-auto flex max-w-7xl flex-wrap justify-center gap-2 px-4 py-5 sm:gap-3 sm:px-6 lg:px-8">
           {[
             { to: "/programa/tecnico", label: t("nav.programTechnical") },
             { to: "/programa/social", label: t("nav.programSocial") },
@@ -32,8 +32,8 @@ function ProgramaLayout() {
             <Link
               key={it.to}
               to={it.to}
-              className="rounded-full border border-border bg-card px-4 py-2 text-xs font-semibold uppercase tracking-wider text-foreground/80 transition hover:border-cyan hover:text-cyan"
-              activeProps={{ className: "rounded-full border border-cyan bg-cyan px-4 py-2 text-xs font-semibold uppercase tracking-wider text-cyan-foreground" }}
+              className="rounded-md border border-white/25 bg-white/5 px-5 py-3 text-[13px] font-bold uppercase tracking-wider text-white transition hover:border-cyan hover:bg-cyan hover:text-cyan-foreground"
+              activeProps={{ className: "rounded-md border-2 border-cyan bg-cyan px-5 py-3 text-[13px] font-bold uppercase tracking-wider text-cyan-foreground shadow-card" }}
             >
               {it.label}
             </Link>
