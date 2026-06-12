@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
 import { PageHero } from "@/components/PageHero";
-import { Construction, Mail } from "lucide-react";
+import { Construction } from "lucide-react";
 
 export const Route = createFileRoute("/sponsors")({
   head: () => ({
@@ -37,12 +37,6 @@ function SponsorsPage() {
               info@alafar2026.com.ar
             </a>.
           </p>
-          <a
-            href="mailto:info@alafar2026.com.ar?subject=Consulta%20sponsoreo%20ALAFAR%202026"
-            className="mt-8 inline-flex items-center gap-2 rounded-md bg-cyan px-6 py-3 text-sm font-bold uppercase tracking-wider text-cyan-foreground shadow-card transition hover:brightness-110"
-          >
-            <Mail size={16} /> {t("sponsors.cta")}
-          </a>
         </div>
       </section>
     </Layout>
