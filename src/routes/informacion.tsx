@@ -27,13 +27,13 @@ const POIS = [
   {
     name: "Cementerio de la Recoleta",
     desc: "Patrimonio histórico y arquitectónico, uno de los cementerios más impresionantes del mundo.",
-    img: "https://images.unsplash.com/photo-1589310243389-96a5483213a8?auto=format&fit=crop&w=800&q=70",
+    img: "https://www.clarin.com/img/2016/11/06/By4Rbq3YNg_1200x0.jpg",
     map: "https://maps.google.com/?q=Cementerio+de+la+Recoleta",
   },
   {
     name: "Floralis Genérica",
     desc: "Escultura monumental de acero y aluminio, símbolo contemporáneo de Buenos Aires.",
-    img: "https://images.unsplash.com/photo-1593986105404-0ec51e7d27e1?auto=format&fit=crop&w=800&q=70",
+    img: "https://elojodelarte.com/media/k2/items/cache/68497d6cb194485d2759fde9466457b7_XL.webp?t=20230509_132450",
     map: "https://maps.google.com/?q=Floralis+Generica",
   },
   {
