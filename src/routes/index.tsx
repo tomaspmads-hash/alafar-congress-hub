@@ -124,7 +124,7 @@ function HomePage() {
           </h2>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { Icon: Sparkles, title: t("highlights.h1Title"), desc: t("highlights.h1Desc") },
+              { Icon: Award, title: t("highlights.h1Title"), desc: t("highlights.h1Desc") },
               { Icon: Users, title: t("highlights.h2Title"), desc: t("highlights.h2Desc") },
               { Icon: Building2, title: t("highlights.h3Title"), desc: t("highlights.h3Desc") },
               { Icon: Music2, title: t("highlights.h4Title"), desc: t("highlights.h4Desc") },
