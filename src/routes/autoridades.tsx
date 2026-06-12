@@ -54,7 +54,6 @@ function AutoridadesPage() {
                     )}
                     <div>
                       <p className="font-display text-base font-bold text-brand-deep">{p.name}</p>
-                      <p className="text-xs uppercase tracking-wider text-muted-foreground">{g.title}</p>
                     </div>
                   </div>
                 ))}
