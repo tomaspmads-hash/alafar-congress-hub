@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, CalendarDays, MapPin, Users, Sparkles, Building2, Music2 } from "lucide-react";
+import { ArrowRight, CalendarDays, MapPin, Users, Award, Building2, Music2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
 import heroBsAs from "@/assets/hero-buenos-aires.jpg";
@@ -33,9 +33,12 @@ function HomePage() {
 
         <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1.3fr_1fr] lg:px-8">
           <div className="fade-in-up">
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.2em] backdrop-blur">
-              <Sparkles size={14} className="text-cyan" />
-              {t("hero.eyebrow")} · Buenos Aires 2026
+            <span className="inline-flex items-center gap-3 rounded-none border-y border-cyan/40 bg-transparent px-1 py-2 text-[11px] font-bold uppercase tracking-[0.35em] text-cyan">
+              <span className="h-px w-8 bg-cyan/60" aria-hidden />
+              XLIV Edición
+              <span className="text-white/40">/</span>
+              Buenos Aires 2026
+              <span className="h-px w-8 bg-cyan/60" aria-hidden />
             </span>
             <h1 className="mt-6 font-display font-black leading-[0.95] text-white text-balance text-5xl sm:text-6xl lg:text-7xl xl:text-[80px]">
               {t("hero.title").split(" ").slice(0, -1).join(" ")}{" "}
@@ -121,7 +124,7 @@ function HomePage() {
           </h2>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { Icon: Sparkles, title: t("highlights.h1Title"), desc: t("highlights.h1Desc") },
+              { Icon: Award, title: t("highlights.h1Title"), desc: t("highlights.h1Desc") },
               { Icon: Users, title: t("highlights.h2Title"), desc: t("highlights.h2Desc") },
               { Icon: Building2, title: t("highlights.h3Title"), desc: t("highlights.h3Desc") },
               { Icon: Music2, title: t("highlights.h4Title"), desc: t("highlights.h4Desc") },
