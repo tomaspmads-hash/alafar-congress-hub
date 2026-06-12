@@ -2,6 +2,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Layout } from "@/components/Layout";
 import { PageHero } from "@/components/PageHero";
 import { ExternalLink, MapPin } from "lucide-react";
+import plazaFranciaAsset from "@/assets/poi-plaza-francia.png.asset.json";
+import recoletaAsset from "@/assets/poi-recoleta.png.asset.json";
+import floralisAsset from "@/assets/poi-floralis.png.asset.json";
+import bellasArtesAsset from "@/assets/poi-bellas-artes.png.asset.json";
 
 export const Route = createFileRoute("/informacion")({
   head: () => ({
@@ -21,25 +25,25 @@ const POIS = [
   {
     name: "Plaza Francia",
     desc: "Espacio verde icónico de Recoleta, sede de la feria de artesanos los fines de semana.",
-    img: "https://upload.wikimedia.org/wikipedia/commons/8/84/Francia_a_la_Argentina.jpg",
+    img: plazaFranciaAsset.url,
     map: "https://maps.google.com/?q=Plaza+Francia+Buenos+Aires",
   },
   {
     name: "Cementerio de la Recoleta",
     desc: "Patrimonio histórico y arquitectónico, uno de los cementerios más impresionantes del mundo.",
-    img: "https://www.clarin.com/img/2016/11/06/By4Rbq3YNg_1200x0.jpg",
+    img: recoletaAsset.url,
     map: "https://maps.google.com/?q=Cementerio+de+la+Recoleta",
   },
   {
     name: "Floralis Genérica",
     desc: "Escultura monumental de acero y aluminio, símbolo contemporáneo de Buenos Aires.",
-    img: "https://elojodelarte.com/media/k2/items/cache/68497d6cb194485d2759fde9466457b7_XL.webp?t=20230509_132450",
+    img: floralisAsset.url,
     map: "https://maps.google.com/?q=Floralis+Generica",
   },
   {
     name: "Museo Nacional de Bellas Artes",
     desc: "Principal museo de arte de Argentina, con obras de Goya, Renoir, Monet y Van Gogh.",
-    img: "https://amigosdelbellasartes.org.ar/wp-content/uploads/2025/08/coleccion-guerrico.jpg",
+    img: bellasArtesAsset.url,
     map: "https://maps.google.com/?q=Museo+Nacional+de+Bellas+Artes+Buenos+Aires",
   },
 ];
