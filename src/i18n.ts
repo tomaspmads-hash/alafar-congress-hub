@@ -7,7 +7,7 @@ const resources = {
     translation: {
       nav: {
         home: "Inicio",
-        program: "Programa",
+        program: "Programas",
         authorities: "Autoridades",
         registration: "Inscripciones",
         information: "Información",
@@ -115,7 +115,7 @@ const resources = {
         perNight: "/ noche",
         body1: "Desde la organización, nos encargamos de gestionar tu estadía para que accedas a una tarifa preferencial exclusiva de",
         body1End: "por noche.",
-        body2: "Para reservar alojamiento, comunicarse a",
+        body2: "Para reservar alojamiento, comunicate con nosotros:",
         footnote: "* Los inscriptos de nacionalidad argentina deberán adicionar el 21% de IVA.",
         hotelTitle: "Hotel Sofitel Buenos Aires",
         hotelDesc: "Sede oficial del XLIV Congreso ALAFAR. Un hotel de lujo ubicado en el corazón de Recoleta/Retiro, a pasos de los principales puntos culturales de Buenos Aires y con todas las comodidades necesarias para una estadía de excelencia.",
@@ -135,7 +135,7 @@ const resources = {
         titleAccent: "visitantes",
         description: "Todo lo que necesitás saber para tu visita a Buenos Aires.",
         p1: "La amabilidad y la hospitalidad de nuestro país son bien conocidas. Argentina es reconocida por su diversidad cultural, étnica y religiosa, donde se respetan las diferencias. Moldeado por la inmigración, nuestro país ha desarrollado una sociedad multicultural y diversa.",
-        p2: "Todos los visitantes deben estar en posesión de un pasaporte válido con una vigencia mínima de seis meses a partir de la fecha de entrada en el país.",
+        p2: "Los participantes provenientes de países no limítrofes deberán contar con pasaporte vigente para ingresar al país. Asimismo, todos los visitantes que requieran pasaporte deben estar en posesión de un documento válido con una vigencia mínima de seis meses a partir de la fecha de entrada en Argentina.",
         p3: "Por favor, compruebe si es titular de un pasaporte de uno de los países que necesitan visado para asistir a congresos en Argentina.",
         consularLabel: "Representación consular",
         consularCta: "Consulte aquí la representación consular de su país",
@@ -172,7 +172,7 @@ const resources = {
     translation: {
       nav: {
         home: "Home",
-        program: "Program",
+        program: "Programs",
         authorities: "Authorities",
         registration: "Registration",
         information: "Information",
@@ -280,7 +280,7 @@ const resources = {
         perNight: "/ night",
         body1: "We handle your stay so you can access an exclusive preferential rate of",
         body1End: "per night.",
-        body2: "To book accommodation, please contact",
+        body2: "To book accommodation, contact us:",
         footnote: "* Argentine attendees must add 21% VAT.",
         hotelTitle: "Sofitel Buenos Aires Hotel",
         hotelDesc: "Official venue of the 44th ALAFAR Congress. A luxury hotel in the heart of Recoleta/Retiro, steps away from the main cultural landmarks of Buenos Aires.",
@@ -300,7 +300,7 @@ const resources = {
         titleAccent: "visitors",
         description: "Everything you need to know for your visit to Buenos Aires.",
         p1: "The kindness and hospitality of our country are well known. Argentina is recognized for its cultural, ethnic and religious diversity, where differences are respected. Shaped by immigration, our country has developed a multicultural and diverse society.",
-        p2: "All visitors must hold a valid passport with a minimum validity of six months from the date of entry into the country.",
+        p2: "Participants from non-bordering countries must hold a valid passport to enter the country. Likewise, all visitors who require a passport must hold a valid document with a minimum validity of six months from the date of entry into Argentina.",
         p3: "Please check whether you hold a passport from a country that requires a visa to attend conferences in Argentina.",
         consularLabel: "Consular representation",
         consularCta: "Check your country's consular representation",

@@ -19,10 +19,10 @@ export const Route = createFileRoute("/inscripciones")({
 function InscripcionesPage() {
   const { t } = useTranslation();
 
-  const rows: { label: string; note?: string; values: (string | null)[] }[] = [
+  const rows: { label: string; note?: string; values: (string | null)[]; freeDashes?: boolean }[] = [
     { label: t("registration.rows.members"), values: ["800", "900", "1050", "1250"] },
     { label: t("registration.rows.nonMembers"), values: ["900", "1000", "1150", "1450"] },
-    { label: t("registration.rows.honorary"), values: ["—", "—", "—", "900"] },
+    { label: t("registration.rows.honorary"), values: ["—", "—", "—", "900"], freeDashes: true },
     {
       label: t("registration.rows.students"),
       note: t("registration.rows.studentsNote"),
@@ -32,6 +32,7 @@ function InscripcionesPage() {
       label: t("registration.rows.companions"),
       note: t("registration.rows.companionsNote"),
       values: ["—", "—", "—", "—"],
+      freeDashes: true,
     },
     { label: t("registration.rows.additional"), values: ["400", "450", "550", "750"] },
   ];
@@ -43,8 +44,8 @@ function InscripcionesPage() {
     { title: t("registration.cols.onsite"), sub: t("registration.cols.onsiteSub") },
   ];
 
-  const formatValue = (v: string | null, rowLabel: string) => {
-    if (v === "—") return rowLabel === t("registration.rows.companions") ? t("registration.rows.free") : "—";
+  const formatValue = (v: string | null, freeDashes?: boolean) => {
+    if (v === "—") return freeDashes ? t("registration.rows.free") : "—";
     return `USD ${v}`;
   };
 
@@ -88,7 +89,7 @@ function InscripcionesPage() {
                     </td>
                     {r.values.map((v, i) => (
                       <td key={i} className="border-t border-border p-5 text-center align-middle">
-                        {v === "—" && r.label === t("registration.rows.companions") ? (
+                        {v === "—" && r.freeDashes ? (
                           <span className="inline-block rounded-full bg-cyan/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-cyan">
                             {t("registration.rows.free")}
                           </span>
@@ -116,7 +117,7 @@ function InscripcionesPage() {
                     <div key={c.title} className="rounded-lg border border-border bg-surface p-3">
                       <p className="font-bold uppercase tracking-wider text-cyan text-[10px]">{c.title}</p>
                       <p className="mt-1 font-display text-base font-extrabold text-brand-deep">
-                        {formatValue(r.values[i], r.label)}
+                        {formatValue(r.values[i], r.freeDashes)}
                       </p>
                     </div>
                   ))}

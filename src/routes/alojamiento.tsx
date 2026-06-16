@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
 import { PageHero } from "@/components/PageHero";
-import { MapPin } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 import sofitelAsset from "@/assets/sofitel-fachada.png.asset.json";
 const sofitel = sofitelAsset.url;
 
@@ -36,12 +36,17 @@ function AlojamientoPage() {
             <p className="mt-5 text-base leading-relaxed text-foreground/85">
               {t("accommodation.body1")} <span className="font-semibold text-brand-deep">USD 240</span> {t("accommodation.body1End")}
             </p>
-            <p className="mt-3 text-base leading-relaxed text-foreground/85">
-              {t("accommodation.body2")}{" "}
-              <a href="mailto:info@alafar2026.com.ar" className="font-semibold text-cyan hover:underline">
-                info@alafar2026.com.ar
-              </a>.
-            </p>
+            <div className="mt-6 rounded-xl border-2 border-cyan/40 bg-card p-5 sm:p-6">
+              <p className="text-xs font-bold uppercase tracking-[0.25em] text-cyan">
+                {t("accommodation.body2")}
+              </p>
+              <a
+                href="mailto:info@alafar2026.com.ar?subject=Reserva%20de%20alojamiento%20ALAFAR%202026"
+                className="mt-3 inline-flex items-center gap-2 rounded-md bg-cyan px-5 py-3 text-sm font-bold uppercase tracking-wider text-cyan-foreground shadow-card transition hover:brightness-110"
+              >
+                <Mail size={16} /> info@alafar2026.com.ar
+              </a>
+            </div>
             <p className="mt-6 text-xs italic text-muted-foreground">{t("accommodation.footnote")}</p>
           </div>
         </div>

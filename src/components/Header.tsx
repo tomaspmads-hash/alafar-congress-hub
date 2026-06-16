@@ -105,26 +105,28 @@ export function Header({ transparentOnTop = false }: { transparentOnTop?: boolea
             </Link>
           ))}
 
-          <div className="ml-2 flex items-center gap-1 border-l border-border pl-3">
+          <div className="ml-2 flex items-center gap-1 rounded-md border border-border bg-background/40 p-1 backdrop-blur">
             <button
               onClick={() => setLang("es")}
-              className={`rounded px-2 py-1 text-[11px] font-bold uppercase ${
+              aria-label="Español"
+              className={`inline-flex items-center gap-1.5 rounded px-2.5 py-1.5 text-[11px] font-bold uppercase ${
                 i18n.language?.startsWith("es")
-                  ? "bg-cyan text-cyan-foreground"
-                  : onDark ? "text-white/80 hover:text-white" : "text-foreground/60 hover:text-brand"
+                  ? "bg-cyan text-cyan-foreground shadow-sm"
+                  : onDark ? "text-white/80 hover:bg-white/10 hover:text-white" : "text-foreground/70 hover:bg-secondary hover:text-brand"
               }`}
             >
-              ES
+              <span className="text-base leading-none">🇪🇸</span> ES
             </button>
             <button
               onClick={() => setLang("en")}
-              className={`rounded px-2 py-1 text-[11px] font-bold uppercase ${
+              aria-label="English"
+              className={`inline-flex items-center gap-1.5 rounded px-2.5 py-1.5 text-[11px] font-bold uppercase ${
                 i18n.language?.startsWith("en")
-                  ? "bg-cyan text-cyan-foreground"
-                  : onDark ? "text-white/80 hover:text-white" : "text-foreground/60 hover:text-brand"
+                  ? "bg-cyan text-cyan-foreground shadow-sm"
+                  : onDark ? "text-white/80 hover:bg-white/10 hover:text-white" : "text-foreground/70 hover:bg-secondary hover:text-brand"
               }`}
             >
-              EN
+              <span className="text-base leading-none">🇬🇧</span> EN
             </button>
           </div>
 

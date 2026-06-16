@@ -28,7 +28,7 @@ function HomePage() {
   return (
     <Layout transparentHeader>
       {/* HERO — big title, no portrait */}
-      <section className="relative isolate overflow-hidden bg-brand-deep pb-24 pt-32 text-white sm:pt-40">
+      <section className="relative isolate overflow-hidden bg-brand-deep pb-16 pt-28 text-white sm:pt-32">
         <div className="absolute -right-32 -top-32 h-[480px] w-[480px] rounded-full bg-cyan/15 blur-[120px]" />
         <div className="absolute -bottom-40 -left-32 h-[480px] w-[480px] rounded-full bg-brand/40 blur-[120px]" />
 
@@ -40,18 +40,18 @@ function HomePage() {
             Buenos Aires 2026
             <span className="h-px w-8 bg-cyan/60" aria-hidden />
           </span>
-          <h1 className="mt-8 font-display font-black leading-[0.92] text-white text-balance text-5xl sm:text-7xl lg:text-[96px]">
+          <h1 className="mt-6 font-display font-black leading-[0.92] text-white text-balance text-5xl sm:text-7xl lg:text-[96px]">
             {t("hero.title").split(" ").slice(0, -1).join(" ")}{" "}
             <span className="text-cyan">{t("hero.title").split(" ").slice(-1)}</span>
           </h1>
-          <p className="mx-auto mt-8 max-w-3xl font-display text-2xl font-semibold text-cyan text-balance sm:text-3xl lg:text-[34px]">
+          <p className="mx-auto mt-6 max-w-3xl font-display text-2xl font-semibold text-cyan text-balance sm:text-3xl lg:text-[34px]">
             {t("hero.dates")}
           </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm text-white/80">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm text-white/80">
             <span className="inline-flex items-center gap-2"><CalendarDays size={16} className="text-cyan" /> {t("hero.dates")}</span>
             <span className="inline-flex items-center gap-2"><MapPin size={16} className="text-cyan" /> Hotel Sofitel · Recoleta</span>
           </div>
-          <div className="mt-10 flex flex-wrap justify-center gap-3">
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link to="/inscripciones" className="inline-flex items-center gap-2 rounded-md bg-cyan px-7 py-3.5 text-sm font-bold uppercase tracking-wider text-cyan-foreground shadow-elegant transition hover:brightness-110">
               {t("nav.register")} <ArrowRight size={16} />
             </Link>
@@ -63,40 +63,45 @@ function HomePage() {
       </section>
 
       {/* WELCOME SPEECH */}
-      <section className="bg-background py-20 sm:py-28">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-bold uppercase tracking-[0.25em] text-cyan">{t("welcome.title")}</p>
-          <h2 className="mt-3 font-display text-3xl font-extrabold text-brand-deep sm:text-4xl lg:text-5xl text-balance">
-            {t("welcome.title")}
-          </h2>
-          {/* TODO: replace with the official welcome speech text from Dr. Celso Freitas */}
-          <div className="mt-8 space-y-5 text-base leading-relaxed text-foreground/85 sm:text-lg">
-            <p>{t("welcome.p1")}</p>
-            <p>{t("welcome.p2")}</p>
-            <p>{t("welcome.p3")}</p>
-            <p>{t("welcome.p4")}</p>
-          </div>
-          <p className="mt-10 border-l-4 border-cyan pl-4 text-sm font-semibold uppercase tracking-wider text-brand-deep">
-            {t("welcome.signature")}
-          </p>
-
-          {/* President portrait — below welcome, smaller */}
-          <div className="mt-14 flex flex-col items-center text-center">
-            <div className="w-full max-w-[260px] overflow-hidden rounded-xl border border-border bg-brand shadow-elegant">
-              <img
-                src={president}
-                alt={t("hero.presidentName")}
-                className="aspect-[4/5] w-full object-cover"
-              />
-              <div className="border-t border-white/10 bg-brand-deep/90 p-4">
-                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan">
-                  {t("hero.president")}
-                </p>
-                <p className="mt-1 font-display text-base font-bold text-white">
-                  {t("hero.presidentName")}
-                </p>
+      <section className="bg-background py-14 sm:py-20">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-10 lg:grid-cols-[1fr_300px] lg:items-start lg:gap-14">
+            {/* Left column — welcome speech */}
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.25em] text-cyan">{t("welcome.title")}</p>
+              <h2 className="mt-3 font-display text-3xl font-extrabold text-brand-deep sm:text-4xl lg:text-5xl text-balance">
+                {t("welcome.title")}
+              </h2>
+              {/* TODO: replace with the official welcome speech text from Dr. Celso Freitas */}
+              <div className="mt-6 space-y-5 text-base leading-relaxed text-foreground/85 sm:text-lg">
+                <p>{t("welcome.p1")}</p>
+                <p>{t("welcome.p2")}</p>
+                <p>{t("welcome.p3")}</p>
+                <p>{t("welcome.p4")}</p>
               </div>
+              <p className="mt-8 border-l-4 border-cyan pl-4 text-sm font-semibold uppercase tracking-wider text-brand-deep">
+                {t("welcome.signature")}
+              </p>
             </div>
+
+            {/* Right column — president portrait */}
+            <aside className="lg:sticky lg:top-28">
+              <div className="overflow-hidden rounded-xl border border-border bg-brand shadow-elegant">
+                <img
+                  src={president}
+                  alt={t("hero.presidentName")}
+                  className="aspect-[4/5] w-full object-cover"
+                />
+                <div className="border-t border-white/10 bg-brand-deep/90 p-4">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan">
+                    {t("hero.president")}
+                  </p>
+                  <p className="mt-1 font-display text-base font-bold text-white">
+                    {t("hero.presidentName")}
+                  </p>
+                </div>
+              </div>
+            </aside>
           </div>
         </div>
       </section>
@@ -106,7 +111,7 @@ function HomePage() {
         {/* TODO: replace with hi-res institutional Buenos Aires photo from client */}
         <img src={heroBsAs} alt="Buenos Aires" className="absolute inset-0 -z-10 h-full w-full object-cover" />
         <div className="absolute inset-0 -z-10 bg-brand-deep/20" />
-        <div className="mx-auto max-w-7xl px-4 py-40 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 py-28 sm:px-6 lg:px-8">
           <div className="max-w-xl rounded-xl bg-brand-deep/70 p-8 text-white backdrop-blur-sm">
             <p className="text-xs font-bold uppercase tracking-[0.25em] text-cyan">{t("bsAs.title")}</p>
             <h2 className="mt-2 font-display text-3xl font-extrabold sm:text-4xl">{t("bsAs.title")}</h2>
@@ -116,12 +121,12 @@ function HomePage() {
       </section>
 
       {/* HIGHLIGHTS */}
-      <section className="bg-surface py-20">
+      <section className="bg-surface py-14 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-center font-display text-3xl font-extrabold text-brand-deep sm:text-4xl">
             {t("highlights.title")}
           </h2>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[
               { Icon: Award, title: t("highlights.h1Title"), desc: t("highlights.h1Desc") },
               { Icon: Users, title: t("highlights.h2Title"), desc: t("highlights.h2Desc") },
