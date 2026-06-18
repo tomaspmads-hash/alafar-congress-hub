@@ -3,10 +3,10 @@ import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
 import { PageHero } from "@/components/PageHero";
 import { ExternalLink, MapPin } from "lucide-react";
-import plazaFranciaAsset from "@/assets/poi-plaza-francia.png.asset.json";
-import recoletaAsset from "@/assets/poi-recoleta.png.asset.json";
-import floralisAsset from "@/assets/poi-floralis.png.asset.json";
-import bellasArtesAsset from "@/assets/poi-bellas-artes.png.asset.json";
+import plazaFrancia from "@/assets/poi-plaza-francia.png";
+import recoleta from "@/assets/poi-recoleta.png";
+import floralis from "@/assets/poi-floralis.png";
+import bellasArtes from "@/assets/poi-bellas-artes.png";
 
 export const Route = createFileRoute("/informacion")({
   head: () => ({
@@ -26,25 +26,25 @@ const POIS = [
   {
     name: "Plaza Francia",
     desc: "Espacio verde icónico de Recoleta, sede de la feria de artesanos los fines de semana.",
-    img: plazaFranciaAsset.url,
+    img: plazaFrancia,
     map: "https://maps.google.com/?q=Plaza+Francia+Buenos+Aires",
   },
   {
     name: "Cementerio de la Recoleta",
     desc: "Patrimonio histórico y arquitectónico, uno de los cementerios más impresionantes del mundo.",
-    img: recoletaAsset.url,
+    img: recoleta,
     map: "https://maps.google.com/?q=Cementerio+de+la+Recoleta",
   },
   {
     name: "Floralis Genérica",
     desc: "Escultura monumental de acero y aluminio, símbolo contemporáneo de Buenos Aires.",
-    img: floralisAsset.url,
+    img: floralis,
     map: "https://maps.google.com/?q=Floralis+Generica",
   },
   {
     name: "Museo Nacional de Bellas Artes",
     desc: "Principal museo de arte de Argentina, con obras de Goya, Renoir, Monet y Van Gogh.",
-    img: bellasArtesAsset.url,
+    img: bellasArtes,
     map: "https://maps.google.com/?q=Museo+Nacional+de+Bellas+Artes+Buenos+Aires",
   },
 ];

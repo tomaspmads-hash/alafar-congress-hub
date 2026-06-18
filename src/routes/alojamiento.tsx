@@ -3,8 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
 import { PageHero } from "@/components/PageHero";
 import { Mail, MapPin } from "lucide-react";
-import sofitelAsset from "@/assets/sofitel-fachada.png.asset.json";
-const sofitel = sofitelAsset.url;
+import sofitel from "@/assets/sofitel-fachada.png";
 
 export const Route = createFileRoute("/alojamiento")({
   head: () => ({

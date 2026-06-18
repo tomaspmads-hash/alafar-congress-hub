@@ -2,10 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, CalendarDays, MapPin, Users, Award, Building2, Music2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
-import bsAsAsset from "@/assets/buenos-aires-puerto-madero.jpg.asset.json";
-import presidentAsset from "@/assets/celso-freitas.jpg.asset.json";
-const president = presidentAsset.url;
-const heroBsAs = bsAsAsset.url;
+import heroBsAs from "@/assets/buenos-aires-puerto-madero.jpg";
+import president from "@/assets/celso-freitas.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
